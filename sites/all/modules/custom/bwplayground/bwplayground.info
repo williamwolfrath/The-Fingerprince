@@ -1,0 +1,5 @@
+name = BW Playground
+description = Urban Interns Testing module - dev only
+core = 6.x
+version = "6.x-0.1"
+package = BW

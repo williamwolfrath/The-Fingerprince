@@ -1,0 +1,376 @@
+<?php
+
+
+function marketing_menu() {
+    $items = array();
+    
+    $items['marketing'] = array(
+       'title' => 'Email Marketing',
+       'description' => 'Web interface for the creation and sending of HTML marketing emails.',
+       'page callback' => 'marketing_email',
+       'access callback' => TRUE,
+       'type' => MENU_CALLBACK,
+    );
+    $items['email'] = array(
+       'title' => 'Email Web Client',
+       'description' => 'Webmail',
+       'page callback' => 'webmail',
+       'access callback' => TRUE,
+       'type' => MENU_CALLBACK,
+    );
+    $items['marketing/sent/%'] = array(
+       'title' => 'Marketing Sent Email',
+       'description' => 'A sent email.',
+       'page callback' => 'marketing_get_sent_email',
+       'page arguments' => array(2),
+       'access callback' => TRUE,
+       'type' => MENU_CALLBACK,
+    );
+    $items['marketing-test'] = array(
+       'title' => 'Marketing Test',
+       'description' => 'Testing the marketing email layout.',
+       'page callback' => 'marketing_test',
+       'access callback' => TRUE,
+       'type' => MENU_CALLBACK,
+    );
+    
+    return $items;
+}
+
+/* menu functions */
+function marketing_email() {
+    log_debug("Email!!");
+    //drupal_add_js(drupal_get_path("module", "marketing")."/ui/ui.dialog.js");
+    drupal_add_js(drupal_get_path("module", "marketing")."/ui-with-theme/js/jquery-ui-1.6.custom.min.js");
+    drupal_add_js(drupal_get_path("module", "marketing")."/marketing-emails.js");
+    drupal_add_css(drupal_get_path("module", "marketing")."/ui-with-theme/development-bundle/themes/trontastic/ui.all.css");
+    // drupal_get_form calls drupal_render on the form. 
+    $rendered = drupal_get_form('marketing_emailform');
+    $html_output = theme('marketing-email-create', $rendered);
+    return $html_output;
+}
+
+
+function webmail() {
+    drupal_goto("https://mail4.webfaction.com/src/login.php");
+}
+
+
+function marketing_get_sent_email($email_id) {
+    $sql = "SELECT * FROM {marketing} WHERE eid=%d";
+    $result= db_query(db_rewrite_sql($sql), $email_id);
+    $sent_email = db_fetch_object($result);
+    $html_output = theme('marketing-sent-email-full', $sent_email);
+    return $html_output;
+}
+
+
+function marketing_test() {
+//    $newbod = "
+//      Hello, and thank you for your interest in my book.<br/>
+//      <br/>
+//      My name is Peter Begley. In Fingerprint land there are no two 
+//fingerprints exactly alike. Adorably messy 
+//fingerprints like the Cotton Candy Cowboy
+//and the Pizza Pirate have their own very 
+//distinctive identities.<br/><br/>
+//
+//But one little finger print, named Petey 
+//Peanut Butter, is still searching for his 
+//uniqueness. Feeling lost and unloved Petey 
+//Peanut Butter is thrust into a fight to save 
+//Fingerprint Land from The Monster Sponge.
+//<br/><br/>
+//Here Petey discovers his true identity.
+//His very own yucky guckiness.
+//Petey Peanut Butter saves Fingerprint
+//Land and is crowned the Finger Prince.
+//<br/>
+//<br/>
+//Sincerely,<br/>
+//Peter Begley";
+//    $bhtml= theme('marketing-email-body', $newbod);
+//    return $bhtml;
+    $sampleNode = node_load(8);
+    return "<div style='color:block'><PRE>" . print_r($sampleNode, TRUE) . "</pre></div>";
+    //return "hiya!";
+}
+
+
+
+/**
+ * Define the marketing email form
+ */
+function marketing_emailform() {
+    $form['to'] = array(
+        '#title' => t('To Address'),
+        '#type' => 'textfield',
+        '#description' => t('The address of the person to send the email to.'),
+    );
+    $form['subject'] = array(
+        '#title' => t('Subject'),
+        '#type' => 'textfield',
+        '#description' => t('The subject of the email.'),
+    );
+    $form['email_body'] = array(
+        '#title' => t('Email Body'),
+        '#type' => 'textarea',
+        '#description' => t('The body of the email.'),
+        '#rows' => 25,
+        '#cols' => 60,
+        '#wysiwyg' => TRUE
+    );
+    $form['submit'] = array(
+       '#type' => 'submit',
+       '#value' => t('Send'),
+    );
+    return $form;
+}
+
+
+function marketing_emailform_submit($form, &$form_state) {
+    global $user;
+    $to_address = $form_state['values']['to'];
+    $subject = $form_state['values']['subject'];
+    $email_body = $form_state['values']['email_body'];
+    $params['account'] = $user;
+    $params['to_address'] = $to_address;
+    $params['email_body'] = $email_body;
+    $params['subject'] = $subject;
+    log_debug("To address is [$to_address]");
+    // store 'from' address as a var or make sure it uses the one from the smtp settings. 
+    $mail_result = drupal_mail('marketing', 'emails', $to_address, user_preferred_language($user), $params, $user->mail);
+    log_debug('mail function complete: Result: ', $mail_result);
+    drupal_mail('marketing', 'emails', $user->mail, user_preferred_language($user), $params, $user->mail);
+    log_debug('sent a copy to ', $user->mail);
+    drupal_mail('marketing', 'emails', 'william.wolfrath@gmail.com', user_preferred_language($user), $params, $user->mail);
+    log_debug('sent a copy to ', $user->mail);
+    drupal_mail('marketing', 'emails', 'wwolfrath@yahoo.com', user_preferred_language($user), $params, $user->mail);
+    // save the email to the db
+    $sent_email = new stdClass();
+    $sent_email->uid = $user->uid;
+    $sent_email->to_address = t($to_address);
+    $sent_email->subject = t($subject);
+    $sent_email->email_body = t(filter_filter("process", 1, -1, $email_body));
+    $sent_email->date_used = date("Y-m-d H:i:s");
+    drupal_write_record('marketing', $sent_email);
+    
+    _save_marketing_contact($user, $to_address);
+    log_debug("Saved new contact: ", $marketing_contact);
+    
+    drupal_set_message("Your email has been sent to " . $to_address . ".");
+    
+}
+
+
+
+function _save_marketing_contact($author, $to_address) {
+    // don't save if already in db
+    $num_contacts = db_query("SELECT COUNT(*) as count FROM {node} WHERE title = '%s' and type='marketing_contact' ", $to_address);
+    $contact_count = db_fetch_object($num_contacts);
+    log_debug('contact count is ', $contact_count);
+    
+    if ( $contact_count->count == 0) {
+        $marketing_contact = new stdClass();
+        $marketing_contact->type = "marketing_contact";
+        $marketing_contact->uid = $author->uid;
+        $marketing_contact->title = $to_address;
+        $marketing_contact->created = strtotime("now");
+        $marketing_contact->changed = strtotime("now");
+        $marketing_contact->status = 1;
+        $marketing_contact->comment = 0;
+        $marketing_contact->promote = 0;
+        $marketing_contact->moderate = 0;
+        $marketing_contact->sticky = 0;
+        $marketing_contact->field_first_name[0]['value'] = '';
+        $marketing_contact->field_last_name[0]['value'] = '';
+        $marketing_contact->field_company[0]['value'] = '';
+        node_save($marketing_contact);
+        log_debug('marketing: added ', $marketing_contact);
+    }
+    
+}
+
+
+
+// definitely need to just refactor this a bit, some stuff doesn't belong here..
+function marketing_mail($key, &$message, $params) {
+    $language = $message['language'];
+    $variables = user_mail_tokens($params['account'], $language);
+    switch ($key) {
+        case 'emails':
+            //watchdog('marketing-message', print_r($message, true));
+            //watchdog('marketing-params', print_r($params, true));
+            $boundary = '----=_NextPart_'.md5(uniqid());
+            $message['headers']['Content-Type'] = "multipart/alternative; charset=utf-8; boundary=\"$boundary\"";
+            //$message['headers']['Content-Type'] = "text/html; charset=utf-8; format=flowed;";
+            $message['subject'] = $params['subject'];
+            //watchdog('marketing-message2', print_r($message, true));
+            $body_text = create_email_body($params['email_body'], $boundary);
+            $message['body'][] = $body_text;
+            break; 
+    }
+}
+
+
+function create_email_body($body, $boundary) {
+   	watchdog('marketing', 'body before: ' . $body);
+    	$newbod = filter_filter("process", 1, -1, $body);
+  	watchdog('marketing', 'body after: ' . $newbod);
+    	$bhtml= theme('marketing-email-body', $newbod);
+        watchdog('marketing', 'themed: ' . $bhtml);
+        $bthml = $bhtml . _get_marketing_links();
+        watchdog('marketing', 'themed + links: ' . $bhtml);
+    
+        $links = 'See <a href="http://www.thefingerprince.com/preview-audio">audio</a> and <a href="http://www.thefingerprince.com/preview-pdf">non-audio</a> versions of the e book.';
+    
+    
+        //make sure original HTML had nice line breaks 
+        $btext = preg_replace('/<style>.+?<\/style>/ims', '', $bhtml); 
+        $btext = strip_tags( $btext ); 
+        $multi_body  = "
+    
+        This is a multi-part message in MIME format.
+    
+        --$boundary
+        Content-Type: text/plain; charset=UTF-8; format=flowed; 
+        Content-Transfer-Encoding: 8bit
+    
+        $btext
+        {$links}
+    
+        --$boundary
+        Content-Type: text/html; charset=UTF-8; format=flowed; 
+        Content-Transfer-Encoding: 8bit
+    
+        $bhtml 
+    
+    ";
+
+    return $multi_body;
+}
+
+
+function _get_marketing_links() {
+    $output = 'See <a href="http://www.thefingerprince.com/preview-audio">audio</a> and <a href="http://www.thefingerprince.com/preview-pdf">non-audio</a> versions of the e book.';
+    return $output;
+}
+
+
+function marketing_emailform_validate($form, &$form_state) {
+    require_once('EmailAddressValidator.php');
+    $validator = new EmailAddressValidator;
+    
+    $to_address = trim($form_state['values']['to']);
+    log_debug("Validating email address [$to_address]");
+    $form_state['values']['to'] = $to_address;
+    
+    if ( !($validator->check_email_address($form_state['values']['to'])) ) {
+        log_debug("Email not valid...");
+        form_set_error('to', t('Please enter a valid email address.'));
+    }
+    else { log_debug("Email ok."); }
+    
+    if (empty($form_state['values']['subject'])) {
+        form_set_error('subject', t('Please enter a subject.'));
+    }
+    if (empty($form_state['values']['email_body'])) {
+        form_set_error('email_body', t('Please enter an email body.'));
+    }
+}
+
+
+// the block that shows previously sent emails, for reference
+function marketing_block($op='list', $delta=0, $edit=array()) {
+    switch($op) {
+		case 'list':
+			$blocks[0]['info'] = t('FP Marketing Sent Emails');
+			$blocks[0]['cache'] = BLOCK_NO_CACHE;
+			return $blocks;
+		case 'view':
+			global $user;
+			$sent_emails_list = marketing_get_sent_emails($user);
+			$block['content'] = theme('marketing-sent-emails', $sent_emails_list);
+			return $block;
+	}
+}
+
+
+function marketing_get_sent_emails($user) {
+    $output = "";
+    $sent_emails = db_query("SELECT * FROM {marketing} WHERE uid = '%d' ORDER BY date_used desc", $user->uid);
+    $count = 0;
+    $hide_email = false;
+    $show_more_link = false;
+    while ($sent_email = db_fetch_object($sent_emails)) {
+        if ( $count == 10 ) {
+            $show_more_link = true;
+        }
+        else {
+            $show_more_link = false;
+        }
+        if ( $count > 10 ) {
+            $hide_email = true;
+        }
+        watchdog('marketing', "passing hide email: $hide_email to template.");
+        $output .= theme('marketing-sent-email', $sent_email, $hide_email, $show_more_link);
+        $count += 1;
+    }
+    return $output;
+}
+
+
+// should update marketing by adding a new table. 6100 means core 6,
+// major version 1.x of my module, and 00 is the first update (next is 01, then 02)
+// this was more of an exercise than anything else
+function marketing_update_6100() {
+    $schema['fp_contact_emails'] = array(
+        'description' => t('Stores marketing emails and the addresses they are sent to for reference.'),
+        'fields' => array(
+            'cid' => array(
+                'type' => 'serial',
+                'unsigned' => TRUE,
+                'not null' => TRUE,
+                'description' => t('The primary key id.'),
+            ),
+            'contact_email_address' => array(
+                'type' => 'varchar',
+                'length' => 50,
+                'not null' => TRUE,
+                'description' => t('The email address.'),
+            ),
+        ),
+        'primary key' => array(
+            'cid'
+        ),
+    );
+    $ret = array();
+    db_create_table($ret, 'fp_contact_emails', $schema['fp_contact_emails']);
+    return $ret;
+}
+
+
+function marketing_theme() {
+    return array(
+       'marketing-email-create' => array(
+            'template' => 'marketing-email-create',
+            'arguments' => array('rform'=>$rendered),
+        ),
+       'marketing-email-body' => array(
+            'template' => 'marketing-email-body',
+            'arguments' => array('email_body'=>$body),
+       ),
+       'marketing-sent-emails' => array(
+            'template' => 'marketing-sent-emails',
+            'arguments' => array('sent_emails_list'=>$sent_emails_list),
+       ),
+       'marketing-sent-email' => array(
+            'template' => 'marketing-sent-email',
+            'arguments' => array('sent_email'=>$sent_email, 'hide_email'=>$hide_email, 'show_more_link'=>$show_more_link),
+       ),
+       'marketing-sent-email-full' => array(
+            'template' => 'marketing-sent-email-full',
+            'arguments' => array('sent_email'=>$sent_email),
+       ),
+    );
+}

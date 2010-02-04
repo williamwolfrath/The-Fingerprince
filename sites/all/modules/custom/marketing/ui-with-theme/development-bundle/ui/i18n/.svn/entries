@@ -1,0 +1,317 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wc-entries
+   xmlns="svn:">
+<entry
+   committed-rev="94"
+   name=""
+   committed-date="2009-07-24T20:08:31.530936Z"
+   url="file:///home/gemiinii/webapps/wilwolf_svn/drupal/6/fingerprince/trunk/modules/marketing/ui-with-theme/development-bundle/ui/i18n"
+   last-author="gemiinii"
+   kind="dir"
+   repos="file:///home/gemiinii/webapps/wilwolf_svn"
+   revision="94"/>
+<entry
+   committed-rev="94"
+   name="ui.datepicker-zh-CN.js"
+   text-time="2009-06-12T08:21:36.000000Z"
+   committed-date="2009-07-24T20:08:31.530936Z"
+   checksum="d20693fe52e8cc2c74d03ffc2a67cc17"
+   last-author="gemiinii"
+   kind="file"/>
+<entry
+   committed-rev="94"
+   name="ui.datepicker-lt.js"
+   text-time="2009-06-12T08:21:36.000000Z"
+   committed-date="2009-07-24T20:08:31.530936Z"
+   checksum="e7ca976d5205ed366f35ea444f524d71"
+   last-author="gemiinii"
+   kind="file"/>
+<entry
+   committed-rev="94"
+   name="ui.datepicker-lv.js"
+   text-time="2009-06-12T08:21:36.000000Z"
+   committed-date="2009-07-24T20:08:31.530936Z"
+   checksum="802716ba46f6b2f8cd66782e2646e866"
+   last-author="gemiinii"
+   kind="file"/>
+<entry
+   committed-rev="94"
+   name="ui.datepicker-ca.js"
+   text-time="2009-06-12T08:21:36.000000Z"
+   committed-date="2009-07-24T20:08:31.530936Z"
+   checksum="2c30e359a47c368b9b24ea4ce849b60a"
+   last-author="gemiinii"
+   kind="file"/>
+<entry
+   committed-rev="94"
+   name="ui.datepicker-da.js"
+   text-time="2009-06-12T08:21:36.000000Z"
+   committed-date="2009-07-24T20:08:31.530936Z"
+   checksum="aee19090af82ff35d65656f93702849d"
+   last-author="gemiinii"
+   kind="file"/>
+<entry
+   committed-rev="94"
+   name="ui.datepicker-pt-BR.js"
+   text-time="2009-06-12T08:21:36.000000Z"
+   committed-date="2009-07-24T20:08:31.530936Z"
+   checksum="cd10232612b889e4ec2c682408241a4d"
+   last-author="gemiinii"
+   kind="file"/>
+<entry
+   committed-rev="94"
+   name="ui.datepicker-tr.js"
+   text-time="2009-06-12T08:21:36.000000Z"
+   committed-date="2009-07-24T20:08:31.530936Z"
+   checksum="d3f471b22bbb348096e16df37d43e43f"
+   last-author="gemiinii"
+   kind="file"/>
+<entry
+   committed-rev="94"
+   name="ui.datepicker-fa.js"
+   text-time="2009-06-12T08:21:36.000000Z"
+   committed-date="2009-07-24T20:08:31.530936Z"
+   checksum="3dee5f3f3d08c74550ba95be3fdad1e0"
+   last-author="gemiinii"
+   kind="file"/>
+<entry
+   committed-rev="94"
+   name="ui.datepicker-de.js"
+   text-time="2009-06-12T08:21:36.000000Z"
+   committed-date="2009-07-24T20:08:31.530936Z"
+   checksum="91e8535e3f81ad2752c45febb77c5176"
+   last-author="gemiinii"
+   kind="file"/>
+<entry
+   committed-rev="94"
+   name="ui.datepicker-bg.js"
+   text-time="2009-06-12T08:21:36.000000Z"
+   committed-date="2009-07-24T20:08:31.530936Z"
+   checksum="4a7ad3529a09276ee352baeeeb20e099"
+   last-author="gemiinii"
+   kind="file"/>
+<entry
+   committed-rev="94"
+   name="ui.datepicker-sv.js"
+   text-time="2009-06-12T08:21:36.000000Z"
+   committed-date="2009-07-24T20:08:31.530936Z"
+   checksum="26efdfb0ee5ac5edf45098cf6b1679ad"
+   last-author="gemiinii"
+   kind="file"/>
+<entry
+   committed-rev="94"
+   name="ui.datepicker-ja.js"
+   text-time="2009-06-12T08:21:36.000000Z"
+   committed-date="2009-07-24T20:08:31.530936Z"
+   checksum="f299056f7e4849f63ead474860810dba"
+   last-author="gemiinii"
+   kind="file"/>
+<entry
+   committed-rev="94"
+   name="jquery.ui.i18n.all.js"
+   text-time="2009-06-12T08:21:36.000000Z"
+   committed-date="2009-07-24T20:08:31.530936Z"
+   checksum="575df0109c8b46f7c7000d51b7f2a917"
+   last-author="gemiinii"
+   kind="file"/>
+<entry
+   committed-rev="94"
+   name="ui.datepicker-he.js"
+   text-time="2009-06-12T08:21:36.000000Z"
+   committed-date="2009-07-24T20:08:31.530936Z"
+   checksum="910155771d00c4e8797f2646e7486e08"
+   last-author="gemiinii"
+   kind="file"/>
+<entry
+   committed-rev="94"
+   name="ui.datepicker-fi.js"
+   text-time="2009-06-12T08:21:36.000000Z"
+   committed-date="2009-07-24T20:08:31.530936Z"
+   checksum="7fcae29091878f15b17aa3b08b434c3d"
+   last-author="gemiinii"
+   kind="file"/>
+<entry
+   committed-rev="94"
+   name="ui.datepicker-eo.js"
+   text-time="2009-06-12T08:21:36.000000Z"
+   committed-date="2009-07-24T20:08:31.530936Z"
+   checksum="c9c685d38675449eb4d52c105df7f490"
+   last-author="gemiinii"
+   kind="file"/>
+<entry
+   committed-rev="94"
+   name="ui.datepicker-cs.js"
+   text-time="2009-06-12T08:21:36.000000Z"
+   committed-date="2009-07-24T20:08:31.530936Z"
+   checksum="429df6cd67fc320626baedbb99bc5117"
+   last-author="gemiinii"
+   kind="file"/>
+<entry
+   committed-rev="94"
+   name="ui.datepicker-es.js"
+   text-time="2009-06-12T08:21:36.000000Z"
+   committed-date="2009-07-24T20:08:31.530936Z"
+   checksum="d872d7cf646107e22e9be81c41b907ca"
+   last-author="gemiinii"
+   kind="file"/>
+<entry
+   committed-rev="94"
+   name="ui.datepicker-ko.js"
+   text-time="2009-06-12T08:21:36.000000Z"
+   committed-date="2009-07-24T20:08:31.530936Z"
+   checksum="60c92a663a9947491526d77e39d04846"
+   last-author="gemiinii"
+   kind="file"/>
+<entry
+   committed-rev="94"
+   name="ui.datepicker-is.js"
+   text-time="2009-06-12T08:21:36.000000Z"
+   committed-date="2009-07-24T20:08:31.530936Z"
+   checksum="b521b1e30f668fc0e7c11b3fe5b9e9ae"
+   last-author="gemiinii"
+   kind="file"/>
+<entry
+   committed-rev="94"
+   name="ui.datepicker-hu.js"
+   text-time="2009-06-12T08:21:36.000000Z"
+   committed-date="2009-07-24T20:08:31.530936Z"
+   checksum="acda27d4a3b462ebad7292284009cc17"
+   last-author="gemiinii"
+   kind="file"/>
+<entry
+   committed-rev="94"
+   name="ui.datepicker-no.js"
+   text-time="2009-06-12T08:21:36.000000Z"
+   committed-date="2009-07-24T20:08:31.530936Z"
+   checksum="3610be77f21747df35667a3757e8e785"
+   last-author="gemiinii"
+   kind="file"/>
+<entry
+   committed-rev="94"
+   name="ui.datepicker-sk.js"
+   text-time="2009-06-12T08:21:36.000000Z"
+   committed-date="2009-07-24T20:08:31.530936Z"
+   checksum="868b8dea159e5fa96338194b36a25a7b"
+   last-author="gemiinii"
+   kind="file"/>
+<entry
+   committed-rev="94"
+   name="ui.datepicker-uk.js"
+   text-time="2009-06-12T08:21:36.000000Z"
+   committed-date="2009-07-24T20:08:31.530936Z"
+   checksum="fa7eedda5ad2f23f9960ff4b7f2774f4"
+   last-author="gemiinii"
+   kind="file"/>
+<entry
+   committed-rev="94"
+   name="ui.datepicker-hy.js"
+   text-time="2009-06-12T08:21:36.000000Z"
+   committed-date="2009-07-24T20:08:31.530936Z"
+   checksum="f0cefb32fc63e99c48abdbb39a90b457"
+   last-author="gemiinii"
+   kind="file"/>
+<entry
+   committed-rev="94"
+   name="ui.datepicker-ro.js"
+   text-time="2009-06-12T08:21:36.000000Z"
+   committed-date="2009-07-24T20:08:31.530936Z"
+   checksum="11ff02e4b2be6be932a84930382a00ee"
+   last-author="gemiinii"
+   kind="file"/>
+<entry
+   committed-rev="94"
+   name="ui.datepicker-sq.js"
+   text-time="2009-06-12T08:21:36.000000Z"
+   committed-date="2009-07-24T20:08:31.530936Z"
+   checksum="82199e7e47fa39f95f0e978925e2c1a6"
+   last-author="gemiinii"
+   kind="file"/>
+<entry
+   committed-rev="94"
+   name="ui.datepicker-ru.js"
+   text-time="2009-06-12T08:21:36.000000Z"
+   committed-date="2009-07-24T20:08:31.530936Z"
+   checksum="7deeb371cb8dbe3aecf030d781221e29"
+   last-author="gemiinii"
+   kind="file"/>
+<entry
+   committed-rev="94"
+   name="ui.datepicker-id.js"
+   text-time="2009-06-12T08:21:36.000000Z"
+   committed-date="2009-07-24T20:08:31.530936Z"
+   checksum="44b682aafce0dea8d2629dcfffc52f33"
+   last-author="gemiinii"
+   kind="file"/>
+<entry
+   committed-rev="94"
+   name="ui.datepicker-ar.js"
+   text-time="2009-06-12T08:21:36.000000Z"
+   committed-date="2009-07-24T20:08:31.530936Z"
+   checksum="731a56b97b515b3c5662e6dcf6246397"
+   last-author="gemiinii"
+   kind="file"/>
+<entry
+   committed-rev="94"
+   name="ui.datepicker-fr.js"
+   text-time="2009-06-12T08:21:36.000000Z"
+   committed-date="2009-07-24T20:08:31.530936Z"
+   checksum="9383cc2e128b426bb2c927cf1d529a9e"
+   last-author="gemiinii"
+   kind="file"/>
+<entry
+   committed-rev="94"
+   name="ui.datepicker-hr.js"
+   text-time="2009-06-12T08:21:36.000000Z"
+   committed-date="2009-07-24T20:08:31.530936Z"
+   checksum="50b9261aab7b2db416fce955ec0573d4"
+   last-author="gemiinii"
+   kind="file"/>
+<entry
+   committed-rev="94"
+   name="ui.datepicker-zh-TW.js"
+   text-time="2009-06-12T08:21:36.000000Z"
+   committed-date="2009-07-24T20:08:31.530936Z"
+   checksum="9ed21c4908e7dd0f5709d9a336682bfe"
+   last-author="gemiinii"
+   kind="file"/>
+<entry
+   committed-rev="94"
+   name="ui.datepicker-nl.js"
+   text-time="2009-06-12T08:21:36.000000Z"
+   committed-date="2009-07-24T20:08:31.530936Z"
+   checksum="ca9c923ed5d7ba7a547eff87b9559f5d"
+   last-author="gemiinii"
+   kind="file"/>
+<entry
+   committed-rev="94"
+   name="ui.datepicker-pl.js"
+   text-time="2009-06-12T08:21:36.000000Z"
+   committed-date="2009-07-24T20:08:31.530936Z"
+   checksum="11abd13dfe551d2e03f725b1f10fa8af"
+   last-author="gemiinii"
+   kind="file"/>
+<entry
+   committed-rev="94"
+   name="ui.datepicker-th.js"
+   text-time="2009-06-12T08:21:36.000000Z"
+   committed-date="2009-07-24T20:08:31.530936Z"
+   checksum="9d5a03959027db051ecfd718a4f97c4a"
+   last-author="gemiinii"
+   kind="file"/>
+<entry
+   committed-rev="94"
+   name="ui.datepicker-it.js"
+   text-time="2009-06-12T08:21:36.000000Z"
+   committed-date="2009-07-24T20:08:31.530936Z"
+   checksum="5d15d410a12094682fd841adce1ca6cb"
+   last-author="gemiinii"
+   kind="file"/>
+<entry
+   committed-rev="94"
+   name="ui.datepicker-sl.js"
+   text-time="2009-06-12T08:21:36.000000Z"
+   committed-date="2009-07-24T20:08:31.530936Z"
+   checksum="0eaa40d26743438856cadcc93174d983"
+   last-author="gemiinii"
+   kind="file"/>
+</wc-entries>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wc-entries
+   xmlns="svn:">
+<entry
+   committed-rev="94"
+   name=""
+   committed-date="2009-07-24T20:08:31.530936Z"
+   url="file:///home/gemiinii/webapps/wilwolf_svn/drupal/6/fingerprince/trunk/modules/marketing/ui-with-theme"
+   last-author="gemiinii"
+   kind="dir"
+   repos="file:///home/gemiinii/webapps/wilwolf_svn"
+   revision="94"/>
+<entry
+   committed-rev="94"
+   name="jquery-ui-1.6.custom-with-theme.zip"
+   text-time="2009-07-24T18:04:10.000000Z"
+   committed-date="2009-07-24T20:08:31.530936Z"
+   checksum="d62acc221c36d40e5855fadc6415e4ba"
+   last-author="gemiinii"
+   kind="file"
+   prop-time="2009-07-24T20:08:15.000000Z"/>
+<entry
+   name="css"
+   kind="dir"/>
+<entry
+   name="development-bundle"
+   kind="dir"/>
+<entry
+   committed-rev="94"
+   name="index.html"
+   text-time="2009-07-24T17:04:28.000000Z"
+   committed-date="2009-07-24T20:08:31.530936Z"
+   checksum="ee4fa0f3c8bfb4f6c939f5815c50a854"
+   last-author="gemiinii"
+   kind="file"/>
+<entry
+   name="js"
+   kind="dir"/>
+</wc-entries>

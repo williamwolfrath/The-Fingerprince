@@ -1,0 +1,16 @@
+<?php
+
+/**
+ * @file
+ * Install scripts for dblog_csv
+ */
+
+
+/**
+ * Implementation of hook_install().
+ */
+function dblog_csv_install() {
+  // When this module is installed we need to make sure that it runs before
+  // dblog does
+  db_query('UPDATE {system} SET weight = %d WHERE name = "%s"', -1, 'dblog_csv');
+}

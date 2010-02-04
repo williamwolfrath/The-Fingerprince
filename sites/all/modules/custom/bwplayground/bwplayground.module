@@ -1,0 +1,176 @@
+<?php
+
+
+function bwplayground_menu() {
+    $items['bwpage'] = array(
+		'title' => 'BW dev',
+		'description' => 'BW dev for testing',
+		'page callback' => 'bwdev_main',
+		'access callback' => true,
+		'type' => MENU_CALLBACK,
+	);
+    
+    $items['bwupdate/%'] = array(
+		'title' => 'BW update',
+		'description' => 'BW update for testing',
+		'page callback' => 'bwdev_update',
+		'page arguments' => array(1),
+		'access callback' => true,
+		'type' => MENU_CALLBACK,
+	);
+    
+    $items['bwgetexpires'] = array(
+		'title' => 'BW get expires',
+		'description' => 'BW expire list for testing',
+		'page callback' => 'bwdev_get_expires',
+		'access callback' => true,
+		'type' => MENU_CALLBACK,
+	);
+    
+    return $items;
+}
+
+
+function bwplayground_pm_transaction_save($uid, $type, $payment, $result){
+	$now = date("Y-m-d H:i:s");
+	
+	//save in to ui_transcation;
+	$transaction = new stdClass();
+	$transaction->uid 				= $uid;
+	$transaction->transaction_id 	= $result['transaction_id'];
+	if (isset($payment['FIRSTNAME'])){
+		$transaction->first_name		= $payment['FIRSTNAME'];
+	}
+	if (isset($payment['LASTNAME'])){
+		$transaction->last_name			= $payment['LASTNAME'];
+	} 
+	$transaction->amount			= $payment['AMT'];
+	$transaction->note				= "type:".$type."; ".$result['message'];
+	$transaction->created			= $now;
+	drupal_write_record('ui_pm_transaction', $transaction);
+	
+	if (isset($payment['STREET'])){
+		$address = new stdClass();
+		$address->tid = $transaction->tid;
+		$address->address1 				= $payment['STREET'];
+		$address->address2 				= $payment['STREET2'];
+		$address->zip 					= $payment['ZIP'];
+		$address->city 					= $payment['CITY'];
+		$address->state 				= $payment['STATE'];
+		$address->country_code 			= $payment['COUNTRYCODE'];
+		//drupal_write_record('ui_address', $address);
+	}
+	
+	return $transaction->tid;
+}
+
+function ui_payment_get_expire_date($expire_date){
+	if (empty($expire_date)){
+		return date("Y-m-d", strtotime("+30 day"));	
+	}
+	$dt_expire_date = strtotime($expire_date);
+	if ($dt_expire_date >= strtotime(date("Y-m-d"))){
+		$expire_date = date("Y-m-d", strtotime("+30 day", $dt_expire_date));
+	}
+	else {
+		$expire_date = date("Y-m-d", strtotime("+30 day"));
+	}
+	return $expire_date;
+}
+
+
+
+function bwplayground_create_pm_expire($tid) {
+    $expire_date = ui_payment_get_expire_date(null);
+    $upe = new stdClass();
+    $upe->tid = $tid;
+    $upe->expire_date = $expire_date;
+    drupal_write_record('ui_pm_expire', $upe);
+    //db_query("INSERT INTO {ui_pm_expire} (tid, expire_date) VALUES ('%s', '%s')", 
+	//		$tid, $expire_date);
+    watchdog('pg', 'pm expire created.');
+    return $upe->eid;
+}
+
+function bwplayground_update_pm_expire($eid, $tid){
+	watchdog('pg', 'updating expire for eid ' . $eid);
+	$result = db_query("SELECT expire_date FROM {ui_pm_expire} WHERE eid = '%d' ", $eid);
+	$expire = db_fetch_object($result);
+	watchdog('pg', 'fetched object: ' . print_r($expire, true));
+	$expire_date = ui_payment_get_expire_date($expire->expire_date);
+	$expire->expire_date = $expire_date;
+	$expire->tid = $tid;
+	$expire->eid = $eid;
+	drupal_write_record('ui_pm_expire', $expire, 'eid');
+	watchdog('pg', 'updated record for eid ' . $eid);
+}
+
+function bwdev_main() {
+    $payment['FIRSTNAME'] = 'William';
+    $payment['LASTNAME'] = 'Wolfrath';
+    $payment['AMT'] = 150.00;
+    $payment['STREET'] = '7149 Metropolitan Ave';
+    $payment['STREET2'] = '6B';
+    $payment['ZIP'] = '11379';
+    $payment['CITY'] = 'Middle Village';
+    $payment['STATE'] = 'NY';
+    $payment['COUNTRYCODE'] = 'USA';
+    
+    $uid = 1024;
+    
+    $result['transaction_id'] = rand(1 , 123456789012);
+    //$result['transaction_id'] = '6PJ73681SJ006950A';
+    $type = 'message';
+    
+    $tid = bwplayground_pm_transaction_save($uid, $type, $payment, $result);
+    $eid = bwplayground_create_pm_expire($tid);
+    
+    $output = "BW Test Development Page<br/>";
+    $output .= "The tid is " . $tid . '<br/>';
+    $output .= "The eid is " . $eid;
+    return $output;
+}
+
+
+function bwdev_update($eid) {
+    $output = "";
+    $tid = 99;
+    bwplayground_update_pm_expire($eid, $tid);
+    $output .= "pm expire with eid " . $eid . ' updated to have tid ' . $tid;
+    return $output;
+}
+
+
+function ui_payment_get_expire_pm_list($start = null, $count = null){
+	$date   = date("Y-m-d 00:00:00");
+	$query  = "SELECT e.eid, t.transaction_id, t.uid, e.is_cancel FROM {ui_pm_expire} as e ";
+	$query .= " INNER JOIN {ui_pm_transaction} as t ON t.tid = e.tid";
+	$query .= " WHERE e.expire_date < '2009-09-01 00:00:00' AND e.cron = 0";
+	watchdog('bw', 'query is [' . $query . ']');
+	if ($start != null && $count != null){
+		$query .= " LIMIT {$start},{$count}";
+	}
+	$result = db_query($query , $date);
+	$list = array();
+	while($data = db_fetch_object($result)){
+		$list[] = $data;
+	}
+	return $list;
+}
+
+
+
+function bwdev_get_expires() {
+    $output = '';
+    $list = ui_payment_get_expire_pm_list();
+    for ($next = 0; $next < 1; $next ++){
+	if (count($list) == 0){
+	    $output .= "There are no records.";
+	    break;
+	}
+	foreach ($list as $item) {
+	    $output .= $item->eid . "<br/>";
+	}
+    }
+    return $output;
+}

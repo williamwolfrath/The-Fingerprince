@@ -1,0 +1,12 @@
+; $Id: cobaltusers.info,v 1.2 2009/02/20 17:30:14 hugowetterberg Exp $
+name = Cobalt Users
+core = "6.x"
+description = Provides access to users through cobalt
+dependencies[] = cobalt
+package = "Cobalt"
+; Information added by drupal.org packaging script on 2009-06-15
+version = "6.x-1.4"
+core = "6.x"
+project = "cobalt"
+datestamp = "1245079835"
+

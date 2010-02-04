@@ -1,0 +1,4 @@
+<img src="http://fingerprince-dev.wilwolf.com/sites/default/files/fp_letterhead_top_640.jpg" />
+<div style="width: 640px; background: white; font-family: Arial; font-size: 14px;">
+    <?php print $email_body; ?>
+</div>

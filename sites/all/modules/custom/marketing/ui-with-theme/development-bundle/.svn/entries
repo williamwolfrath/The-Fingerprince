@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wc-entries
+   xmlns="svn:">
+<entry
+   committed-rev="94"
+   name=""
+   committed-date="2009-07-24T20:08:31.530936Z"
+   url="file:///home/gemiinii/webapps/wilwolf_svn/drupal/6/fingerprince/trunk/modules/marketing/ui-with-theme/development-bundle"
+   last-author="gemiinii"
+   kind="dir"
+   repos="file:///home/gemiinii/webapps/wilwolf_svn"
+   revision="94"/>
+<entry
+   committed-rev="94"
+   name="GPL-LICENSE.txt"
+   text-time="2009-06-12T08:21:40.000000Z"
+   committed-date="2009-07-24T20:08:31.530936Z"
+   checksum="2c1778696d3ba68569a0352e709ae6b7"
+   last-author="gemiinii"
+   kind="file"/>
+<entry
+   committed-rev="94"
+   name="AUTHORS.txt"
+   text-time="2009-06-12T08:21:40.000000Z"
+   committed-date="2009-07-24T20:08:31.530936Z"
+   checksum="09c1fd70d1c6bc4cf4b3f7418ea98fbd"
+   last-author="gemiinii"
+   kind="file"/>
+<entry
+   committed-rev="94"
+   name="version.txt"
+   text-time="2009-06-12T08:21:40.000000Z"
+   committed-date="2009-07-24T20:08:31.530936Z"
+   checksum="4341447b6ad78bf4d7eb59ebb5a53d63"
+   last-author="gemiinii"
+   kind="file"/>
+<entry
+   name="themes"
+   kind="dir"/>
+<entry
+   committed-rev="94"
+   name="MIT-LICENSE.txt"
+   text-time="2009-06-12T08:21:40.000000Z"
+   committed-date="2009-07-24T20:08:31.530936Z"
+   checksum="0cb20b77e2ee90c726faa9a50869bbf2"
+   last-author="gemiinii"
+   kind="file"/>
+<entry
+   committed-rev="94"
+   name="jquery-1.2.6.js"
+   text-time="2009-06-12T08:21:40.000000Z"
+   committed-date="2009-07-24T20:08:31.530936Z"
+   checksum="343607636acfee88faa2b638330a3370"
+   last-author="gemiinii"
+   kind="file"/>
+<entry
+   name="ui"
+   kind="dir"/>
+</wc-entries>

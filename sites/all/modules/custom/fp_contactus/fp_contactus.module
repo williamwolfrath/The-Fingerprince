@@ -1,0 +1,143 @@
+<?php
+
+function fp_contactus_menu() {
+    $items = array();
+    
+    $items['contactus'] = array(
+       'title' => 'Contact Us',
+       'description' => 'Page that displays the contact us form in a slightly different manner than usual.',
+       'page callback' => 'fp_contactus_main',
+       'access callback' => TRUE,
+       'type' => MENU_CALLBACK,
+    );
+    
+    return $items;
+}
+
+
+function fp_contactus_main() {
+    log_debug("CONTACT US");
+    $rendered = drupal_get_form('fp_contactus_contactform');
+    $output = theme('fp-contactus-main', $rendered);
+    return $output;
+}
+
+
+function fp_contactus_contactform() {
+    $form['sender_email'] = array(
+        '#title' => t(''),
+        '#type' => 'textfield',
+        '#description' => t(''),
+        '#size' => 20,
+    );
+    $form['email_body_1'] = array(
+        '#title' => t(''),
+        '#type' => 'textarea',
+        '#description' => t(''),
+        '#rows' => 5,
+        '#cols' => 53,
+        '#resizable' => FALSE,
+    );
+    $form['submit'] = array(
+	'#type' => 'submit',
+	'#value' => t('Send'),
+    );
+    return $form;
+}
+
+
+function fp_contactus_contactform_validate($form, $form_state) {
+    require_once('EmailAddressValidator.php');
+    
+    if ( $form_state['values']['sender_email'] == 'bill' ) {
+        form_set_error('sender_email', "No using that name");
+    }
+    
+    if ( $form_state['values']['sender_email'] == ""  ) {
+        form_set_error('', "Please enter a value for email.");
+        return false;
+    }
+    else {
+        $validator = new EmailAddressValidator;
+        if ( !($validator->check_email_address($form_state['values']['sender_email'])) ) {
+            form_set_error('', "Email address is not valid.");
+            return false;
+        }
+    }
+    
+    if ( $form_state['values']['email_body_1'] == ""  ) {
+        form_set_error('', "Please enter the email text.");
+        return false;
+    }
+}
+
+
+function fp_contactus_contactform_submit($form, $form_state) {
+   	// everything's good, just send the email
+    	global $user;
+    	$params['to_address'] = "twoface@gmail.com";
+    	$params['email_body'] = $form_state['values']['email_body_1'];
+    	$params['subject'] = "You have received an email from The Fingerprince website";
+    	drupal_mail('fp_contactus', 'emails', "peter@thefingerprince.com", user_preferred_language($user), $params, $form_state['values']['sender_email']); 
+  	drupal_set_message("Your email has been sent.");
+}
+
+
+function fp_contactus_mail($key, &$message, $params) {
+    $language = $message['language'];
+    switch ($key) {
+        case 'emails':
+            //watchdog('marketing-message', print_r($message, true));
+            //watchdog('marketing-params', print_r($params, true));
+            $boundary = '----=_NextPart_'.md5(uniqid());
+            $message['headers']['Content-Type'] = "multipart/alternative; charset=utf-8; boundary=\"$boundary\"";
+            //$message['headers']['Content-Type'] = "text/html; charset=utf-8; format=flowed;";
+            $message['subject'] = $params['subject'];
+            //watchdog('marketing-message2', print_r($message, true));
+	  watchdog('contact', 'calling create email body...');
+            $body_text = _contactus_create_email_body($params['email_body'], $boundary);
+            $message['body'][] = $body_text;
+            break; 
+    }
+}
+
+function _contactus_create_email_body($body, $boundary) {
+	watchdog('contact', 'body before: ' . $body);
+    $bhtml= filter_filter("process", 1, -1, $body);
+  	watchdog('contact', 'body after: ' . $bhtml);
+    
+    //make sure original HTML had nice line breaks 
+    $btext = preg_replace('/<style>.+?<\/style>/ims', '', $bhtml); 
+    $btext = strip_tags( $btext ); 
+    $multi_body  = "
+    
+        This is a multi-part message in MIME format.
+    
+        --$boundary
+        Content-Type: text/plain; charset=UTF-8; format=flowed; 
+        Content-Transfer-Encoding: 8bit
+    
+        $btext
+    
+        --$boundary
+        Content-Type: text/html; charset=UTF-8; format=flowed; 
+        Content-Transfer-Encoding: 8bit
+    
+        $bhtml
+    
+    ";
+
+    return $multi_body;
+}
+
+
+
+
+function fp_contactus_theme() {
+    return array(
+       'fp-contactus-main' => array(
+            'template' => 'fp_contactus',
+            'arguments' => array('rform'=>$rendered),
+        ),
+    );
+}

@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wc-entries
+   xmlns="svn:">
+<entry
+   committed-rev="94"
+   name=""
+   committed-date="2009-07-24T20:08:31.530936Z"
+   url="file:///home/gemiinii/webapps/wilwolf_svn/drupal/6/fingerprince/trunk/modules/marketing/ui-with-theme/development-bundle/ui"
+   last-author="gemiinii"
+   kind="dir"
+   repos="file:///home/gemiinii/webapps/wilwolf_svn"
+   revision="94"/>
+<entry
+   name="i18n"
+   kind="dir"/>
+<entry
+   committed-rev="94"
+   name="ui.core.js"
+   text-time="2009-06-12T08:21:40.000000Z"
+   committed-date="2009-07-24T20:08:31.530936Z"
+   checksum="8e890640adfb355b91c58462371ad3bd"
+   last-author="gemiinii"
+   kind="file"/>
+<entry
+   committed-rev="94"
+   name="jquery-ui-1.6.custom.js"
+   text-time="2009-07-24T17:04:28.000000Z"
+   committed-date="2009-07-24T20:08:31.530936Z"
+   checksum="ac8e78f5abc7c1aa2fb9562a15481967"
+   last-author="gemiinii"
+   kind="file"/>
+<entry
+   committed-rev="94"
+   name="effects.scale.js"
+   text-time="2009-06-12T08:21:40.000000Z"
+   committed-date="2009-07-24T20:08:31.530936Z"
+   checksum="688bd001e85939c3f083321b865bb1a7"
+   last-author="gemiinii"
+   kind="file"/>
+<entry
+   committed-rev="94"
+   name="ui.tabs.js"
+   text-time="2009-06-12T08:21:40.000000Z"
+   committed-date="2009-07-24T20:08:31.530936Z"
+   checksum="e51879d51d00b3c369d5e7072cced9b5"
+   last-author="gemiinii"
+   kind="file"/>
+<entry
+   committed-rev="94"
+   name="effects.clip.js"
+   text-time="2009-06-12T08:21:40.000000Z"
+   committed-date="2009-07-24T20:08:31.530936Z"
+   checksum="64905b3c458a049bd1816775ef384625"
+   last-author="gemiinii"
+   kind="file"/>
+<entry
+   committed-rev="94"
+   name="effects.core.js"
+   text-time="2009-06-12T08:21:40.000000Z"
+   committed-date="2009-07-24T20:08:31.530936Z"
+   checksum="679ab8e9963010da128b07ec3ba31432"
+   last-author="gemiinii"
+   kind="file"/>
+<entry
+   committed-rev="94"
+   name="effects.blind.js"
+   text-time="2009-06-12T08:21:40.000000Z"
+   committed-date="2009-07-24T20:08:31.530936Z"
+   checksum="5b8fe746c82e827fb62cecf01cee21fd"
+   last-author="gemiinii"
+   kind="file"/>
+<entry
+   committed-rev="94"
+   name="effects.shake.js"
+   text-time="2009-06-12T08:21:40.000000Z"
+   committed-date="2009-07-24T20:08:31.530936Z"
+   checksum="9b0f6efd2edbcd5346c013c7e6c4c235"
+   last-author="gemiinii"
+   kind="file"/>
+<entry
+   committed-rev="94"
+   name="ui.dialog.js"
+   text-time="2009-06-12T08:21:40.000000Z"
+   committed-date="2009-07-24T20:08:31.530936Z"
+   checksum="d245c092a0bbf088592b6a169adc00ae"
+   last-author="gemiinii"
+   kind="file"/>
+<entry
+   committed-rev="94"
+   name="ui.accordion.js"
+   text-time="2009-06-12T08:21:40.000000Z"
+   committed-date="2009-07-24T20:08:31.530936Z"
+   checksum="34eb0eebf082f88f231a8580aba23726"
+   last-author="gemiinii"
+   kind="file"/>
+<entry
+   committed-rev="94"
+   name="effects.explode.js"
+   text-time="2009-06-12T08:21:40.000000Z"
+   committed-date="2009-07-24T20:08:31.530936Z"
+   checksum="c412c01bf615caab4a9c5f158aa98c2f"
+   last-author="gemiinii"
+   kind="file"/>
+<entry
+   committed-rev="94"
+   name="effects.slide.js"
+   text-time="2009-06-12T08:21:40.000000Z"
+   committed-date="2009-07-24T20:08:31.530936Z"
+   checksum="1152592af8c938207b978dd76c32be17"
+   last-author="gemiinii"
+   kind="file"/>
+<entry
+   committed-rev="94"
+   name="ui.selectable.js"
+   text-time="2009-06-12T08:21:40.000000Z"
+   committed-date="2009-07-24T20:08:31.530936Z"
+   checksum="0bc2c6fadb1b3af18abe10a8b1b537d7"
+   last-author="gemiinii"
+   kind="file"/>
+<entry
+   committed-rev="94"
+   name="effects.drop.js"
+   text-time="2009-06-12T08:21:40.000000Z"
+   committed-date="2009-07-24T20:08:31.530936Z"
+   checksum="21aa101d18d4a29e020ba019bf51afdb"
+   last-author="gemiinii"
+   kind="file"/>
+<entry
+   committed-rev="94"
+   name="ui.draggable.js"
+   text-time="2009-06-12T08:21:40.000000Z"
+   committed-date="2009-07-24T20:08:31.530936Z"
+   checksum="f9e7f9d49088dff5c5330bc9cc382c88"
+   last-author="gemiinii"
+   kind="file"/>
+<entry
+   committed-rev="94"
+   name="ui.droppable.js"
+   text-time="2009-06-12T08:21:40.000000Z"
+   committed-date="2009-07-24T20:08:31.530936Z"
+   checksum="43855a131d9e4cbf2727e309188a8698"
+   last-author="gemiinii"
+   kind="file"/>
+<entry
+   committed-rev="94"
+   name="effects.highlight.js"
+   text-time="2009-06-12T08:21:40.000000Z"
+   committed-date="2009-07-24T20:08:31.530936Z"
+   checksum="5a5f4cc3eb6e23097b0fa5fba183feda"
+   last-author="gemiinii"
+   kind="file"/>
+<entry
+   committed-rev="94"
+   name="ui.sortable.js"
+   text-time="2009-06-12T08:21:40.000000Z"
+   committed-date="2009-07-24T20:08:31.530936Z"
+   checksum="2a980bba116f73afb244def46982eb2f"
+   last-author="gemiinii"
+   kind="file"/>
+<entry
+   committed-rev="94"
+   name="ui.datepicker.js"
+   text-time="2009-06-12T08:21:40.000000Z"
+   committed-date="2009-07-24T20:08:31.530936Z"
+   checksum="7c0bb6ff194168c5a14c49d1f811bf9d"
+   last-author="gemiinii"
+   kind="file"/>
+<entry
+   committed-rev="94"
+   name="effects.bounce.js"
+   text-time="2009-06-12T08:21:40.000000Z"
+   committed-date="2009-07-24T20:08:31.530936Z"
+   checksum="7e97381938f74dcaa869dda9402e025a"
+   last-author="gemiinii"
+   kind="file"/>
+<entry
+   committed-rev="94"
+   name="effects.pulsate.js"
+   text-time="2009-06-12T08:21:40.000000Z"
+   committed-date="2009-07-24T20:08:31.530936Z"
+   checksum="a27b095c568a651b79a7ab9e47a16ed0"
+   last-author="gemiinii"
+   kind="file"/>
+<entry
+   committed-rev="94"
+   name="ui.resizable.js"
+   text-time="2009-06-12T08:21:40.000000Z"
+   committed-date="2009-07-24T20:08:31.530936Z"
+   checksum="47a9c547c831084d2ae0a841c12c08f8"
+   last-author="gemiinii"
+   kind="file"/>
+<entry
+   committed-rev="94"
+   name="ui.slider.js"
+   text-time="2009-06-12T08:21:40.000000Z"
+   committed-date="2009-07-24T20:08:31.530936Z"
+   checksum="8e23092a57d09b7e95875e1f715c97e2"
+   last-author="gemiinii"
+   kind="file"/>
+<entry
+   committed-rev="94"
+   name="effects.fold.js"
+   text-time="2009-06-12T08:21:40.000000Z"
+   committed-date="2009-07-24T20:08:31.530936Z"
+   checksum="8e6aad863da25010054db5d46093ba58"
+   last-author="gemiinii"
+   kind="file"/>
+<entry
+   committed-rev="94"
+   name="effects.transfer.js"
+   text-time="2009-06-12T08:21:40.000000Z"
+   committed-date="2009-07-24T20:08:31.530936Z"
+   checksum="05cc5a3a3f1e7b738b1c34e816926c20"
+   last-author="gemiinii"
+   kind="file"/>
+</wc-entries>

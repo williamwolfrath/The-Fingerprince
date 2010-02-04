@@ -1,0 +1,5 @@
+name = FingerPrince Orders
+description = For taking book order information and sending to payment processor.
+package = GemiiniiDev
+core = 6.x
+version = "6.x-0.1"

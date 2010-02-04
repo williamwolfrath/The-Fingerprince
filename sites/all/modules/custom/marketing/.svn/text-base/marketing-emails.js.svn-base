@@ -1,0 +1,22 @@
+jQuery(document).ready(function($){
+
+    // bind the sent email links to functions to pop up the email
+    $('#fp-email-display').dialog({ autoOpen: false,
+                                            modal: true,
+                                            width: 600,
+                                            height: 800,
+                                            title: "Sent Email",
+                                            position: ['center', 'top']});
+    
+    $('.fp-sent-email-popup').each(function() {
+        $(this).bind('click', function() {
+            var id = $(this).attr('href');  // id is stored as the href. is that bad?
+            $('#fp-email-display').empty();
+            $('#fp-email-display').load('marketing/sent/' + id + ' #fp-marketing-sent-email-full', {});
+            $('#fp-email-display').dialog('open');
+            return false;
+        });
+    });
+    
+
+});

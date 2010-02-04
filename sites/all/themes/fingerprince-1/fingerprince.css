@@ -1,0 +1,1817 @@
+body {
+	background: #999;
+	font-family: Tahoma, Helvetica, Arial, sans-serif;
+	font-weight: normal;
+	color: #848381;
+}
+
+body.marketing-body {
+	/*background: white url(marketing-body-bg-2.jpg) -10px 30px no-repeat;*/
+	background: white;
+	font-family: Tahoma, Helvetica, Arial, sans-serif;
+	font-weight: normal;
+}
+
+body.marketing-body h2 {
+	font-family: Tahoma, Helvetica, Arial, sans-serif;
+	font-weight: normal;
+}
+
+body.page-order-conf-printable {
+	background: white;
+	width: 400px;
+	height: 800px;
+	border: 1px solid #888888;
+	margin: auto;
+	overflow: hidden;
+	padding: 10px;
+	position: relative;
+	top: 10px;
+}
+body.page-order-conf-printable #content-area>img {
+	position: relative;
+	left: -120px;
+}
+body.page-order-conf-printable #content {
+	width: 400px;
+}
+body.page-order-conf-printable #page {
+	overflow: hidden;
+}
+body.page-marketing-test {
+	color: black;
+	background: white;
+}
+body.page-contact-list {
+	background: white;
+}
+body.page-contact-list h2 {
+	font-family: Tahoma, Helvetica, Arial, sans-serif;
+	font-weight: normal;
+}
+body.page-contact-list div.view-marketing-contacts div.node {
+	/*border: 1px solid #888888;*/
+	width: 300px;
+	margin-bottom: 5px;
+	padding: 5px;
+}
+body.page-contact-list div.view-marketing-contacts div.node div.content {
+	padding-left: 10px;
+}
+body.page-contact-list div.view-header {
+	display: none;
+}
+body.page-contact-list div.node div.marketing-contact-email {
+	display: none;
+}
+body.node-type-marketing-contact {
+	background: white;
+}
+body.node-type-marketing-contact div.node {
+}
+body.page-marketing div.marketing-contact-email {
+	display: none;
+}
+body.page-marketing div.node div.content {
+	padding-left: 10px;
+	font-size: 9px;
+}
+
+a:focus {
+	outline: none;
+}
+
+#main-front .node .content {
+	position: relative;
+	width: 450px;
+	top: 30px;
+	left: 65px;
+}
+
+#content {
+	/*position: relative;*/
+	z-index: 1;
+	/*padding-left: 230px;*/
+}
+
+#content-inner {
+	padding: 30px;
+}
+
+
+#front-audio {
+	position: relative;
+	/*position: absolute;*/
+	top: -100px;
+	z-index: -10;
+}
+
+#fp-front-title {
+	color: #3054a2;
+	font-size: 73px;
+	font-weight: 900;
+	width: 425px;
+	/*letter-spacing: 3px;*/
+	position: relative;
+	left: 8px;
+}
+
+#fp-front-subtitle {
+	color: black;
+	font-size: 25px;
+	font-weight: 800;
+	background: #f26a5c;
+	border: 1px solid black;
+	width: 425px;
+	z-index: 5;
+	position: relative;
+	left: 8px;
+}
+
+#fp-front-subtitle-shadow {
+	background: #676767;
+	border: 1px solid black;
+	width: 425px;
+	height: 65px;
+	z-index: 2;
+	position: relative;
+	top: -60px;
+}
+
+
+#fp-front-subtitle-inner {
+	padding: 3px;
+}
+
+
+
+.dark-bold {
+	color: #333;
+	font-weight: bold;
+}
+
+
+
+#footer {
+	width: 800px;
+	margin: 0px auto;
+	position: relative;
+	top: -30px;
+	height: 255px;
+	background: white url(legal.jpg) no-repeat;
+	color: black;
+}
+
+
+/* pages */
+/* front */
+#fp-main-front {
+	font-style: italic;
+	font-weight: 500;
+	font-size: 14px;
+	margin: 0px auto;
+	background: transparent url('website-8-01-09_Page_1_shadow.png') no-repeat;
+	width: 830px;
+	height: 650px;
+	position: relative;
+}
+
+#front-text-small {
+	position: relative;
+	/*top: 140px;
+	left: 60px;*/
+	width: 450px;
+	position: relative;
+	top: 173px;
+	left: 90px;
+	
+}
+
+
+/* BOOK */
+#fp-book-page {
+	font-style: italic;
+	font-weight: 500;
+	font-size: 15px;
+	/*color: #7d7c7a;*/
+	margin: 0px auto;
+	background: transparent url('website-8-24-09-book-shadow.png') no-repeat;
+	width: 830px;
+	height: 650px;
+}
+
+#fp-book-page p {
+	line-height: 1.1em;  /* fixes bad spacing on mac firefox */
+}
+
+#fp-book-page #fp-book-text {
+	width: 300px;
+	position: relative;
+	left: 500px;
+	top: 25px;
+}
+
+#fp-book-preview-button-1 {
+	position: relative;
+	left: 500px;
+	top: 25px;
+	width: 288px;
+}
+
+#fp-book-preview-button-2 {
+	position: relative;
+	left: 500px;
+	top: 25px;
+	width: 288px;
+	z-index: 10;
+}
+
+
+
+/* ABOUT US PAGE */
+#fp-about-us-page {
+	font-style: italic;
+	font-weight: 500;
+	font-size: 13px;
+	/*color: #7d7c7a;*/
+	margin: 0px auto;
+	background: transparent url('website-8-01-09_Page_4-shadow.png') no-repeat;
+	width: 830px;
+	height: 650px;
+	position: relative;
+}
+
+
+#fp-about-us-page #fp-about-us-left {
+	position: absolute;
+	left: 71px;
+	top: 82px;
+	/*width: 180px;*/
+}
+
+
+#fp-about-us-page #fp-about-us-center {
+	position: absolute;
+	left: 253px;
+	top: 22px;
+}
+
+
+#fp-about-us-page #fp-about-us-right {
+	position: absolute;
+	left: 441px;
+	top: 22px;
+}
+
+
+/* REVIEWS PAGE */
+#fp-reviews-page {
+	font-style: italic;
+	font-weight: 500;
+	font-size: 13px;
+	color: #7d7c7a;
+	margin: 0px auto;
+	background: transparent url('website-8-01-09_Page_5-shadow.png') no-repeat;
+	width: 830px;
+	height: 650px;
+	position: relative;
+}
+
+.fp-reviewer {
+	text-decoration: underline;
+}
+
+#fp-reviews-page #fp-review-1 {
+	position: absolute;
+	left: 335px;
+	top: 90px;
+}
+
+#fp-reviews-page #fp-review-2 {
+	position: absolute;
+	left: 575px;
+	top: 30px;
+}
+
+#fp-reviews-page #fp-review-3 {
+	position: absolute;
+	left: 575px;
+	top: 160px;
+}
+
+
+/* CONTACT US PAGE */
+#fp-contact-us-page {
+	font-style: italic;
+	font-weight: 500;
+	font-size: 14px;
+	color: #7d7c7a;
+	margin: 0px auto;
+	background: transparent url('website-8-15-09-contact-shadow2.png') no-repeat;
+	width: 830px;
+	height: 650px;
+	position: relative;
+}
+
+
+
+/* COMING SOON PAGE */
+#fp-coming-soon-page {
+	font-style: italic;
+	font-weight: 500;
+	font-size: 14px;
+	color: #7d7c7a;
+	margin: 0px auto;
+	background: transparent url('website-8-01-09_back_page-shadow.png') no-repeat;
+	width: 830px;
+	height: 650px;
+	position: relative;
+}
+
+#fp-coming-soon-page #fp-coming-soon-yg-song {
+	position: absolute;
+	top: 330px;
+	left: 440px;
+}
+
+#fp-coming-soon-page #fp-coming-soon-tbc {
+	position: absolute;
+	top: 463px;
+	left: 520px;
+	color: black;
+	font-size: 17px;
+	font-weight: bold;
+	text-align: right;
+}
+
+
+/* ORDER FORM PAGES */
+body.page-order-quantity div.error {
+	width: 800px;
+	margin: auto;
+	font-family: Arial;
+	background: red;
+	color: yellow;
+	border: 1px solid white;
+}
+
+body.page-order-form div.error {
+	width: 800px;
+	margin: auto;
+	font-family: Arial;
+	background: red;
+	color: white;
+	border: 1px solid white;
+}
+
+body.page-contactus div.error {
+	width: 800px;
+	margin: auto;
+	font-family: Arial;
+	background: red;
+	color: white;
+	border: 1px solid white;
+}
+
+body.page-contactus div.messages {
+	width: 800px;
+	margin: auto;
+	font-family: Arial;
+	background: green;
+	color: white;
+	border: 1px solid white;
+}
+
+#fp-order-form-page {
+	font-style: italic;
+	font-weight: 500;
+	font-size: 14px;
+	color: #7d7c7a;
+	margin: 0px auto;
+	background: transparent url('website-8-24-09-order-shadow.png') no-repeat;
+	width: 830px;
+	height: 650px;
+	position: relative;
+}
+
+#fp-order-form-page #fp-order-form-form {
+	background: white;
+	position: absolute;
+	right: 15px;
+	top: 70px;
+	width: 200px;
+	font-size: 10px;
+}
+
+
+#fp-order-form-page #fp-order-form-form fieldset {
+	border: 0;
+}
+
+#fp-order-form-page #fp-order-form-form fieldset legend {
+	display: block;
+	float: left;
+}
+
+#fp-order-form-page #fp-order-form-form #edit-submit {
+	position: absolute;
+	left: 100px;
+	bottom: -20px;
+}
+
+
+#fp-orders-order-form .form-item {
+	margin: 3px;
+	clear: both;
+}
+
+
+#fp-order-quantity-page {
+	font-style: italic;
+	font-weight: 500;
+	font-size: 14px;
+	color: #7d7c7a;
+	margin: 0px auto;
+	background: transparent url('website-8-8-09-order-quantity-nofaces-shadow.png') no-repeat;
+	width: 830px;
+	height: 650px;
+	position: relative;
+}
+
+#fp-order-quantity-page #fp-order-quantity-text-left {
+	position: absolute;
+	left: 50px;
+	top: 85px;
+}
+
+#fp-order-quantity-page #fp-order-quantity-text-e-book {
+	position: absolute;
+	left: 280px;
+	top: 30px;
+}
+
+#fp-order-quantity-page #fp-order-quantity-text-audio-e-book {
+	position: absolute;
+	left: 437px;
+	top: 30px;
+}
+
+.fp-order-quantity-email-prompt {
+	position: relative;
+	top: 25px;
+	left: -45px;
+}
+
+#fp-order-quantity-page #fp-order-quantity-text-right {
+	position: absolute;
+	left: 600px;
+	top: 30px;
+}
+
+#fp-amazon-link {
+	/*background: #66cef3;*/
+	/*border: 1px solid black;*/
+	/*padding: 3px 5px;*/
+}
+
+#fp-order-quantity-text-right a,
+#fp-order-quantity-text-right a:visited{
+	text-decoration: none;
+}
+
+#fp-amazon-link,
+#fp-bn-link {
+	margin-top: 5px;
+	margin-right: 6px;
+	display: block;
+	width: 90px;
+	float: left;
+	text-align: center;
+	color: black;
+	font-weight: bold;
+}
+
+#fp-order-total {
+	position: absolute;
+	top: 163px;
+	left: 3px;
+	color: black;
+}
+
+#fp-bn-link {
+	/*background: #a190c4;
+	border: 1px solid black;
+	padding: 3px 5px;*/
+}
+
+#fp-order-quantity-page #fp-order-quantity-form {
+	position: relative;
+	background: transparent;
+	/*height: 130px;*/
+	width: 320px;
+	/*border: 1px solid black;*/
+	left: 270px;
+	top: 37px;
+}
+
+
+#fp-order-quantity-form .form-item {
+	margin: 1px;
+}
+
+#fp-order-quantity-form fieldset {
+	border: 0;
+	float: left;
+}
+
+#fp-order-quantity-form #edit-submit {
+	background: #66cef3;
+	font-style: oblique;
+	font-weight: bold;
+	border: 1px solid black;
+	font-family: Arial;
+	padding: 3px 5px;
+	font-size: 14px;
+	position: absolute;
+	clear: both;
+	left: 170px;
+	top: 175px;
+}
+#fp-orders-order-form #edit-exp-month-wrapper {
+	float: left;
+	width: 80px;
+}
+#fp-orders-order-form #edit-exp-year-wrapper {
+	clear: none;
+}
+#fp-orders-order-form #edit-first-name-wrapper {
+	margin-top: 0;
+}
+
+#fp-orders-order-form #edit-submit {
+	background: #66cef3;
+	font-style: oblique;
+	font-weight: bold;
+	border: 1px solid black;
+	font-family: Arial;
+	padding: 3px 5px;
+	font-size: 14px;
+	position: relative;
+}
+
+
+#fp-order-quantity-form #edit-num-copies-e-book,
+#fp-order-quantity-form #edit-num-copies-audio-e-book {
+	width: 60px;
+	border: 1px solid black;
+}
+
+#fp-order-quantity-form .form-text {
+	width: 130px;
+	border: 1px solid black;
+}
+
+
+/* ORDER REVIEW PAGE */
+#fp-order-review-page {
+	font-style: italic;
+	font-weight: 500;
+	font-size: 14px;
+	color: #7d7c7a;
+	margin: 0px auto;
+	background: transparent url('website-8-15-09-order-review-shadow.png') no-repeat;
+	width: 830px;
+	height: 650px;
+	position: relative;
+}
+
+
+
+
+#fp-order-review-page-order {
+	position: relative;
+	left: 470px;
+	top: 50px;
+	width: 400px;
+}
+
+#fp-orders-review-form {
+	position: relative;
+}
+
+#fp-orders-review-form #edit-submit {
+	background: #66cef3;
+	font-style: oblique;
+	font-weight: bold;
+	border: 1px solid black;
+	font-family: Arial;
+	padding: 3px 5px;
+	font-size: 14px;
+	position: relative;
+	top: 30px;
+}
+
+
+#fp-order-review-links #fp-links {
+	position: absolute;
+	right: 20px;
+	bottom: 20px;
+}
+
+
+/* ORDER CONF PAGE */
+#fp-order-conf-page {
+	font-style: italic;
+	font-weight: 500;
+	font-size: 14px;
+	color: #7d7c7a;
+	margin: 0px auto;
+	background: transparent url('website-8-15-09-order-conf-shadow2.png') no-repeat;
+	width: 830px;
+	height: 650px;
+	position: relative;
+}
+
+#fp-order-conf-links #fp-links {
+	position: absolute;
+	right: 15px;
+	top: 6px;
+	background: transparent url('fp-nav-order-conf.jpg') no-repeat;
+	width: 170px;
+	height: 250px;
+}
+
+
+#fp-order-conf-e-books {
+	position: absolute;
+	top: 85px;
+	left: 63px;
+}
+
+#fp-order-conf-audio-e-books {
+	position: absolute;
+	top: 30px;
+	left: 247px;
+}
+
+
+.fp-order-conf-book-highlight {
+	color: red;
+}
+
+
+#fp-order-conf-totals {
+	position: absolute;
+	top: 30px;
+}
+
+div.fp-move-left {
+	left: 247px;
+}
+
+div.fp-move-right {
+	left: 455px;
+}
+
+
+#fp-preview-non-audio {
+	width: 850px;
+	margin: auto;
+}
+
+#fp-preview-non-audio-links {
+	width: 200px;
+	margin: auto;
+}
+
+#fp-preview-non-audio-return {
+	padding-top: 10px;
+	float: left;
+}
+#fp-preview-non-audio-return a,
+#fp-preview-non-audio-return a:link,
+#fp-preview-non-audio-return a:visited {
+	color:red;
+	font-size: 16px;
+	text-shadow: black 1px 1px;
+}
+
+#fp-preview-non-audio #fp-preview-non-audio-nav {
+	height: 40px;
+	margin-bottom: 10px;
+	text-align: center;
+}
+
+#fp-preview-non-audio-back {
+	width: 40px;
+	height: 40px;
+	/*background: url(left_arrow.png) no-repeat;*/
+}
+
+#fp-preview-non-audio-forward {
+	width: 40px;
+	height: 40px;
+	/*background: url(right_arrow.png) no-repeat;*/
+}
+
+#fp-preview-non-audio-nav a:link,
+#fp-preview-non-audio-nav a:visited {
+	text-decoration: none;
+}
+
+#fp-preview-non-audio #fp-preview-non-audio-pages {
+	width: 850px;
+	height: 550px;
+	/* border: 1px solid black; */
+	margin: auto;
+}
+
+#fp-preview-non-audio-pages {
+	overflow: hidden;
+}
+
+#fp-preview-current-page {
+	position: relative;
+	width: 850px;
+	height: 5500px;
+	background: url(http://www.thefingerprince.com/sites/default/files/images/non-audio/fp-preview-non-audio-full-vertical.jpg) no-repeat;
+	background-position: 0px 0px;
+}
+
+#content-header div.messages {
+	width: 400px;
+	margin: auto;
+	margin-top: 10px;
+	padding: 3px;
+	font-family: Arial;
+	background: green;
+	color: white;
+	border: 1px solid white;	
+}
+
+
+a.fp-preview-nav-button {
+}
+
+#fp-book-preview-1 {
+	background: #f05239;
+	width: 220px;
+	height: 33px;
+	border: 2px solid #333;
+	padding: 3px;
+	color: black;
+	margin-top: -7px;
+	position: relative;
+	left: 10px;
+	z-index: 5;
+}
+
+#fp-preview-text-1-large {
+	float: left;
+	width: 60px;
+	position: relative;
+	font-size: 17px;
+	line-height: .9em;
+	padding-left: 7px;
+}
+
+#fp-preview-text-2-large {
+	float: left;
+	position: relative;
+	font-size: 17px;
+	line-height: .9em;
+	padding-left: 7px;
+}
+
+#fp-preview-text-2-1 {
+	width: 60px;
+}
+
+#fp-preview-text-2-2 {
+	font-weight: 800;
+}
+
+#fp-preview-text-1-small {
+	/*font-size: 11px;*/
+	position: relative;
+	font-size: 11px;
+	left: 9px;
+}
+
+#fp-preview-text-2-small {
+	/*font-size: 11px;*/
+	position: relative;
+	font-size: 11px;
+	left: 15px;
+}
+
+
+#fp-preview-text-1-1 {
+	
+}
+
+#fp-preview-text-1-2 {
+	font-weight: 800;
+}
+
+#fp-preview-subtext-1 {
+	
+}
+
+#fp-preview-subtext-2-1 {
+	position: relative;
+	left: -30px;
+}
+
+#fp-preview-email-friend-form .form-item {
+	margin: 0;
+	float: left;
+	width: 200px;
+}
+#fp-preview-email-friend-form {
+	width: 600px;
+	margin: auto;
+	padding-left: 100px;
+	color: black;
+}
+#fp-preview-email-friend-form #edit-submit {
+	position: relative;
+	top: 20px;
+}
+
+#fp-book-preview-2 {
+	background: #f05239;
+	width: 275px;
+	height: 33px;
+	border: 2px solid #333;
+	padding: 3px;
+	color: black;
+	position: relative;
+	top: -20px;
+	left: 10px;
+	z-index: 5;
+}
+
+#fp-book-preview-1-shadow {
+	background: #676767;
+	border: 1px solid black;
+	width: 230px;
+	height: 33px;
+	z-index: 1;
+	position: relative;
+	top: -30px;
+}
+
+#fp-book-preview-2-shadow {
+	background: #676767;
+	border: 1px solid black;
+	width: 275px;
+	height: 33px;
+	z-index: 1;
+	position: relative;
+	top: -50px;
+}
+
+
+
+/* swf preview positioning */
+.node .swftools-wrapper {
+	text-align: center;
+}
+
+
+
+
+
+/* CONTACT US PAGE */
+#fp-contactus-contactform #edit-sender-email-wrapper {
+	position: absolute;
+	top: 525px;
+	left: 110px;
+	/*width: 200px;
+	height: 100px;*/
+}
+
+#fp-contactus-contactform #edit-email-body-1-wrapper {
+	position: absolute;
+	top: 475px;
+	left: 290px;
+	/*width: 200px;
+	height: 100px;*/
+}
+
+#fp-contactus-contactform #edit-submit {
+	position: absolute;
+	top: 565px;
+	left: 210px;
+	background: #66cef3;
+	font-style: oblique;
+	font-weight: bold;
+	border: 1px solid black;
+	font-family: Arial;
+	padding: 3px 5px;
+	font-size: 14px;
+}
+
+#fp-contactus-contactform .form-text,
+#fp-contactus-contactform .form-textarea {
+	border: 1px solid black;
+	font-style: italic;
+	font-family: Arial, Helvetica, sans-serif;
+	font-weight: 500;
+	font-size: 10.5pt;
+	color: black;
+}
+#fp-contactus-contactform .form-textarea {
+	position: relative;
+	top: 5px;
+}
+/* LAYOUT */
+
+/* links */
+#fp-links {
+	color: black;
+	font-weight: 800;
+	font-size: 13px;
+}
+
+#fp-links a:link,
+#fp-links a:visited {
+	color: black;
+	text-decoration: none;
+}
+
+#fp-links a:hover {
+	/*color: #f05239;*/
+	text-decoration: none;
+	font-size: 1.3em;
+}
+
+.fp-link {
+	width: 60px;
+	text-align: center;
+}
+
+#fp-links {
+	/*background: transparent url('fp-nav-5-7prints.jpg') no-repeat;*/
+	width: 230px;
+	height: 145px;
+	position: relative;
+	font-size: 12px;
+	line-height: 12px;
+	/*border: 1px solid black;*/
+}
+
+#fp-front-links #fp-links {
+	/*visibility: hidden;*/
+	top: 240px;
+	left: 17px;
+}
+
+
+/* BOOK NAV */
+
+#fp-book-links #fp-links {
+	position: relative;
+	background: transparent url('fp-nav-book2.jpg') no-repeat;
+	top: 10px;
+	left: 560px;
+	width: 250px;
+	height: 146px;
+	z-index: 0;
+}
+
+#fp-book-links #fp-link-home {
+	position: absolute;
+	top: 36px;
+	left: 190px;
+}
+
+
+#fp-book-links #fp-link-book {
+	position: absolute;
+	top: 30px;
+	left: 3px;
+	visibility: hidden;
+}
+
+#fp-book-links #fp-link-about-us {
+	position: absolute;
+	left: 33px;
+	top: 100px;
+}
+
+#fp-book-links #fp-link-order-form {
+	position: absolute;
+	top: 95px;
+	left: 88px;
+}
+
+#fp-book-links #fp-link-reviews {
+	position: absolute;
+	top: 100px;
+	left: 175px;
+	width: 65px;
+}
+
+#fp-book-links #fp-link-coming-soon {
+	position: absolute;
+	top: 40px;
+	left: 125px;
+}
+
+#fp-book-links #fp-link-contact-us {
+	position: absolute;
+	top: 35px;
+	left: 50px;
+}
+/* END HOME NAV */
+
+
+/* HOME NAV */
+#fp-home-links #fp-links {
+	position: relative;
+	background: transparent url('fp-nav-home-1.jpg') no-repeat;
+	top: 190px;
+	left: 17px;
+	width: 200px;
+	height: 230px;
+}
+
+#fp-home-links #fp-link-home {
+	position: absolute;
+	top: 36px;
+	left: 1px;
+	visibility: hidden;
+}
+
+
+#fp-home-links #fp-link-book {
+	position: absolute;
+	top: 30px;
+	left: 3px;
+}
+
+#fp-home-links #fp-link-about-us {
+	position: absolute;
+	left: 22px;
+	top: 140px;
+}
+
+#fp-home-links #fp-link-order-form {
+	position: absolute;
+	top: 75px;
+	left: 105px;
+}
+
+#fp-home-links #fp-link-reviews {
+	position: absolute;
+	top: 30px;
+	left: 64px;
+	width: 65px;
+}
+
+#fp-home-links #fp-link-coming-soon {
+	position: absolute;
+	top: 135px;
+	left: 95px;
+}
+
+#fp-home-links #fp-link-contact-us {
+	position: absolute;
+	top: 90px;
+	left: 30px;
+}
+/* END HOME NAV */
+
+
+/* REVIEWS NAV */
+#fp-reviews-links #fp-links {
+	position: absolute;
+	background: transparent url('fp-nav-home-1.jpg') no-repeat;
+	bottom: 0px;
+	right: 0px;
+	width: 200px;
+	height: 230px;
+}
+
+#fp-reviews-links #fp-link-home {
+	position: absolute;
+	top: 30px;
+	left: 64px;
+}
+
+
+#fp-reviews-links #fp-link-book {
+	position: absolute;
+	top: 30px;
+	left: 3px;
+}
+
+#fp-reviews-links #fp-link-about-us {
+	position: absolute;
+	left: 22px;
+	top: 140px;
+}
+
+#fp-reviews-links #fp-link-order-form {
+	position: absolute;
+	top: 75px;
+	left: 105px;
+}
+
+#fp-reviews-links #fp-link-reviews {
+	position: absolute;
+	top: 30px;
+	left: 64px;
+	width: 65px;
+	visibility: hidden;
+}
+
+#fp-reviews-links #fp-link-coming-soon {
+	position: absolute;
+	top: 135px;
+	left: 95px;
+}
+
+#fp-reviews-links #fp-link-contact-us {
+	position: absolute;
+	top: 90px;
+	left: 30px;
+}
+/* END REVIEWS NAV */
+
+/* ORDER QUANTITY NAV */
+#fp-order-quantity-form-links #fp-links {
+	position: absolute;
+	background: transparent url('fp-nav-quantity1.jpg') no-repeat;
+	bottom: -10px;
+	right: -5px;
+	width: 200px;
+	height: 230px;
+}
+
+#fp-order-quantity-form-links #fp-link-home {
+	position: absolute;
+	top: 90px;
+	left: 107px;
+}
+
+
+#fp-order-quantity-form-links #fp-link-book {
+	position: absolute;
+	top: 30px;
+	left: 123px;
+}
+
+#fp-order-quantity-form-links #fp-link-about-us {
+	position: absolute;
+	left: 22px;
+	top: 140px;
+}
+
+#fp-order-quantity-form-links #fp-link-order-form {
+	position: absolute;
+	top: 75px;
+	left: 105px;
+	visibility: hidden;
+}
+
+#fp-order-quantity-form-links #fp-link-reviews {
+	position: absolute;
+	top: 30px;
+	left: 64px;
+	width: 65px;
+}
+
+#fp-order-quantity-form-links #fp-link-coming-soon {
+	position: absolute;
+	top: 135px;
+	left: 95px;
+}
+
+#fp-order-quantity-form-links #fp-link-contact-us {
+	position: absolute;
+	top: 90px;
+	left: 30px;
+}
+
+
+/* ORDER CONF NAV */
+
+#fp-order-conf-links #fp-link-home {
+	position: absolute;
+	top: 23px;
+	left: 12px;
+}
+
+
+#fp-order-conf-links #fp-link-book {
+	position: absolute;
+	top: 80px;
+	left: 54px;
+}
+
+#fp-order-conf-links #fp-link-about-us {
+	position: absolute;
+	left: 37px;
+	top: 158px;
+}
+
+#fp-order-conf-links #fp-link-order-form {
+	position: absolute;
+	top: 110px;
+	left: 100px;
+}
+
+#fp-order-conf-links #fp-link-reviews {
+	position: absolute;
+	top: 30px;
+	left: 100px;
+	width: 65px;
+}
+
+#fp-order-conf-links #fp-link-coming-soon {
+	position: absolute;
+	top: 180px;
+	left: 103px;
+}
+
+#fp-order-conf-links #fp-link-contact-us {
+	position: absolute;
+	top: 100px;
+	left: 2px;
+}
+/* END ORDER CONF NAV */
+
+/* ABOUT US NAV */
+#fp-about-us-links #fp-links {
+	background: transparent url('fp-nav-about-us.jpg') no-repeat;
+	top: 0px;
+	left: 640px;
+	width: 170px;
+	height: 250px;
+}
+
+#fp-about-us-links #fp-link-home {
+	position: absolute;
+	top: 188px;
+	left: 66px;
+}
+
+#fp-about-us-links #fp-link-book {
+	position: absolute;
+	top: 80px;
+	left: 65px;
+}
+
+#fp-about-us-links #fp-link-about-us {
+	position: absolute;
+	left: 70px;
+	top: 180px;
+	visibility: hidden;
+}
+
+#fp-about-us-links #fp-link-order-form {
+	position: absolute;
+	top: 120px;
+	left: 100px;
+}
+
+#fp-about-us-links #fp-link-reviews {
+	position: absolute;
+	top: 30px;
+	left: 110px;
+	width: 65px;
+}
+
+#fp-about-us-links #fp-link-coming-soon {
+	position: absolute;
+	top: 130px;
+	left: 25px;
+}
+
+#fp-about-us-links #fp-link-contact-us {
+	position: absolute;
+	top: 30px;
+	left: 25px;
+}
+
+
+/* ORDER REVIEW NAV */
+#fp-order-review-links #fp-links {
+	background: transparent url('fp-nav-about-us.jpg') no-repeat;
+	top: 365px;
+	left: 640px;
+	width: 170px;
+	height: 250px;
+}
+
+#fp-order-review-links #fp-link-home {
+	position: absolute;
+	top: 188px;
+	left: 66px;
+}
+
+#fp-order-review-links #fp-link-book {
+	position: absolute;
+	top: 80px;
+	left: 65px;
+}
+
+#fp-order-review-links #fp-link-about-us {
+	position: absolute;
+	top: 120px;
+	left: 105px;
+}
+
+#fp-order-review-links #fp-link-order-form {
+	position: absolute;
+	top: 120px;
+	left: 100px;
+	visibility: hidden;
+}
+
+#fp-order-review-links #fp-link-reviews {
+	position: absolute;
+	top: 30px;
+	left: 110px;
+	width: 65px;
+}
+
+#fp-order-review-links #fp-link-coming-soon {
+	position: absolute;
+	top: 130px;
+	left: 25px;
+}
+
+#fp-order-review-links #fp-link-contact-us {
+	position: absolute;
+	top: 30px;
+	left: 25px;
+}
+
+
+
+/* CONTACT US NAV */
+#fp-contact-us-links #fp-links {
+	position: absolute;
+	background: transparent url('fp-nav-contact4.png') no-repeat;
+	top: -3px;
+	left: 20px;
+	width: 250px;
+	height: 180px;
+}
+
+body.page-contactus #fp-contact-us-links #fp-links {
+	top: 2px;
+}
+
+#fp-contact-us-links #fp-link-home {
+	position: absolute;
+	top: 30px;
+	left: 12px;
+}
+
+#fp-contact-us-links #fp-link-book {
+	position: absolute;
+	top: 100px;
+	left: 67px;
+}
+
+#fp-contact-us-links #fp-link-about-us {
+	position: absolute;
+	left: 140px;
+	top: 20px;
+}
+
+#fp-contact-us-links #fp-link-order-form {
+	position: absolute;
+	top: 137px;
+	left: 10px;
+}
+
+#fp-contact-us-links #fp-link-reviews {
+	position: absolute;
+	top: 30px;
+	left: 77px;
+	width: 65px;
+}
+
+#fp-contact-us-links #fp-link-coming-soon {
+	position: absolute;
+	top: 80px;
+	left: 10px;
+}
+
+#fp-contact-us-links #fp-link-contact-us {
+	position: absolute;
+	top: 30px;
+	left: 25px;
+	visibility: hidden;
+}
+
+
+/* ORDER FORM NAV */
+#fp-order-form-links #fp-links {
+	position: absolute;
+	background: transparent url('fp-nav-order2.jpg') no-repeat;
+	top: 0px;
+	left: 20px;
+	width: 250px;
+	height: 180px;
+}
+
+#fp-order-form-links #fp-link-home {
+	position: absolute;
+	top: 30px;
+	left: 12px;
+}
+
+#fp-order-form-links #fp-link-book {
+	position: absolute;
+	top: 130px;
+	left: 65px;
+}
+
+#fp-order-form-links #fp-link-about-us {
+	position: absolute;
+	left: 140px;
+	top: 20px;
+}
+
+#fp-order-form-links #fp-link-order-form {
+	position: absolute;
+	top: 90px;
+	left: 120px;
+}
+
+#fp-order-form-links #fp-link-reviews {
+	position: absolute;
+	top: 50px;
+	left: 77px;
+	width: 65px;
+}
+
+#fp-order-form-links #fp-link-coming-soon {
+	position: absolute;
+	top: 80px;
+	left: 10px;
+}
+
+#fp-order-form-links #fp-link-contact-us {
+	position: absolute;
+	top: 65px;
+	left: 185px;
+}
+
+
+
+/* COMING SOON NAV */
+#fp-coming-soon-links #fp-links {
+	position: absolute;
+	background: transparent url('fp-nav-comingsoon.jpg') no-repeat;
+	bottom: 40px;
+	left: 20px;
+	width: 250px;
+	height: 180px;
+}
+
+#fp-coming-soon-links #fp-link-home {
+	position: absolute;
+	top: 30px;
+	left: 12px;
+}
+
+#fp-coming-soon-links #fp-link-book {
+	position: absolute;
+	top: 130px;
+	left: 75px;
+}
+
+#fp-coming-soon-links #fp-link-about-us {
+	position: absolute;
+	left: 20px;
+	top: 140px;
+}
+
+#fp-coming-soon-links #fp-link-order-form {
+	position: absolute;
+	top: 65px;
+	left: 140px;
+}
+
+#fp-coming-soon-links #fp-link-reviews {
+	position: absolute;
+	top: 50px;
+	left: 77px;
+	width: 65px;
+}
+
+#fp-coming-soon-links #fp-link-coming-soon {
+	position: absolute;
+	top: 80px;
+	left: 10px;
+}
+
+#fp-coming-soon-links #fp-link-contact-us {
+	position: absolute;
+	top: 135px;
+	left: 140px;
+}
+
+
+
+
+
+
+/* GENERAL NAV LINK POSITIONING */
+#fp-link-home {
+	position: absolute;
+	top: 30px;
+	left: 1px;
+}
+
+
+#fp-link-book {
+	position: absolute;
+	top: 30px;
+	left: 66px;
+}
+
+#fp-link-about-us {
+	position: absolute;
+	left: 22px;
+	top: 95px;
+	width: 50px;
+}
+
+#fp-link-order-form {
+	position: absolute;
+	top: 30px;
+	left: 175px;
+}
+
+#fp-link-reviews {
+	position: absolute;
+	top: 45px;
+	left: 117px;
+	width: 65px;
+}
+
+#fp-link-coming-soon {
+	position: absolute;
+	top: 100px;
+	left: 90px;
+}
+
+#fp-link-contact-us {
+	position: absolute;
+	top: 100px;
+	left: 160px;
+}
+
+
+
+/* the user info block */
+#block-block-1 {
+	margin: 30px 0 20px 0;
+	margin-left: 10px;
+	font-size: 12px;
+	background: #F8F8F8;
+	padding: 5px;
+}
+
+#block-views-marketing_contacts-block_1 {
+	margin-left: 10px;
+	padding: 5px;
+	background: #E8E8F1;
+	border: 1px solid black;
+	-moz-border-radius-topleft: 4px;
+	-moz-border-radius-topright: 4px;
+	-webkit-border-top-left-radius: 4px;
+	-webkit-border-top-right-radius: 4px;
+	-moz-border-radius-bottomleft: 4px;
+	-moz-border-radius-bottomright: 4px;
+	-webkit-border-bottom-left-radius: 4px;
+	-webkit-border-bottom-right-radius: 4px;
+}
+
+#block-marketing-0 {
+	margin-top: 20px;
+}
+
+/* login block */
+#block-user-0 {
+	position: relative;
+	width: 120px;
+	top: -40px;
+}
+
+
+
+
+div.block-whoami {
+	position: absolute;
+	width: 400px;
+	right: 100px;
+	top: -12px;
+	font-size: 9pt;
+	color: red;
+}
+
+
+h4.redtext {
+	color: red;
+}
+
+
+
+
+/* MARKETING */
+
+#sidebar-left {
+	z-index: 5;
+	width: 260px;
+}
+
+.sidebar-left #content-inner {
+	padding-left: 260px;
+}
+
+#marketing-email-header {
+	font-family: Arial;
+}
+
+#marketing-email-header h1 {
+	font-family: Tahoma, Helvetica, Arial, sans-serif;
+	font-weight: normal;
+}
+
+#marketing-email-header p {
+	margin-top: 0;
+	font-style: italic;
+}
+
+#marketing-email-content {
+	/*background: transparent url('marketing-bg-5.png') no-repeat;*/
+	margin-top: 40px;
+}
+
+#marketing-email-create>#content>#content-inner {
+	/*padding-left: 230px;*/
+	/*width: 100%;*/
+}
+
+
+#marketing-email-create #content-area {
+	border: 8px solid #777;
+	padding: 20px;
+	padding-top: 0;
+	margin-right: 10px;
+	background: #f5f5f5;
+	position: relative;
+	width: 660px;
+	-moz-border-radius-topleft: 4px;
+	-moz-border-radius-topright: 4px;
+	-webkit-border-top-left-radius: 4px;
+	-webkit-border-top-right-radius: 4px;
+	-moz-border-radius-bottomleft: 4px;
+	-moz-border-radius-bottomright: 4px;
+	-webkit-border-bottom-left-radius: 4px;
+	-webkit-border-bottom-right-radius: 4px;
+}
+
+.page-marketing .status {
+	border: 1px solid white;
+	background: #017B54;
+	color: white;
+	padding: 4px;
+	margin-right: 10px;
+	position: relative;
+	left: -200px;
+}
+
+
+#marketing-email-create .block {
+	margin-bottom: 30px;
+	padding-left: 8px;
+}
+
+/* hide the login block links on the marketing page */
+#marketing-email-create #block-user-0 .item-list {
+	visibility: hidden;
+}
+
+#marketing-emailform label {
+	/*color: #943701;*/
+	color: #014073;
+	font-size: 14px;
+	font-family: Tahoma, Helvetica, Arial, sans-serif;
+	font-weight: normal;
+}
+
+#marketing-emailform .description {
+	font-style: italic;
+	font-size: .7em;
+}
+
+#marketing-emailform #edit-submit {
+	border: 8px solid #777;
+	background: #014073;
+	color: white;
+}
+
+#marketing-emailform #edit-submit:hover {
+	cursor: pointer;
+}
+
+#marketing-login {
+	/*width: 800px;
+	margin-left: 220px;
+	margin-top: 40px;*/
+}
+
+#fp-marketing-sent-email-full {
+	width: 460px;
+	font-size: .8em;
+}
+
+.fp-marketing-email-to,
+.fp-marketing-email-subject {
+	padding-left: 10px;
+	color: #b8ec79;
+}
+
+#fp-sent-emails {
+	font-size: .7em;
+	background: white;
+	color: black;
+	border: 4px solid #777;
+}
+
+#fp-sent-emails a:link {
+	color: #014073;
+}
+
+#fp-sent-emails a:visited {
+	color: #888;
+}
+
+#fp-sent-emails-header {
+	background: white;
+	padding-left: 5px;
+	text-decoration: underline;
+}
+
+#fp-sent-email {
+	padding: 10px;
+}
+
+#fp-sent-email-more a:link,
+#fp-sent-email-more a:visited {
+	color: #777777;
+	text-decoration: none;
+	padding-left: 5px;
+}
+
+.fp-email-label {
+	color: #b8ec79;
+}
+
+.fp-email-body {
+	margin-top: 10px;
+}
+
+#fp-email-display {
+	background: black;
+	color: white;
+	width: 200px;
+	padding: 20px;
+}
+
+.ui-dialog-overlay{ 
+        opacity:0.5; 
+        background: #014073; 
+} 
+
+.fp-big-bold {
+	font-size: 20px;
+	font-weight: 400;
+	color: #014073;
+}
+
+.fp-small-bold {
+	font-weight: 800;
+	color: black;
+}
+
+.marketing-red {
+	color: red;
+}
+
+body.page-marketing div.view-marketing-contacts div.view-content div.node { padding: 5px 0 5px 0;}
+div.view-marketing-contacts div.view-content div.node h2 { font-size: 11px; padding: 0; margin: 0; }
+div.view-marketing-contacts div.view-content div.node a:link,
+div.view-marketing-contacts div.view-content div.node a:visited { text-decoration: none; }
+/* END MARKETING */

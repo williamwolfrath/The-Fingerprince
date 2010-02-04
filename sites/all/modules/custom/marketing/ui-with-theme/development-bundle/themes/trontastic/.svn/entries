@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wc-entries
+   xmlns="svn:">
+<entry
+   committed-rev="94"
+   name=""
+   committed-date="2009-07-24T20:08:31.530936Z"
+   url="file:///home/gemiinii/webapps/wilwolf_svn/drupal/6/fingerprince/trunk/modules/marketing/ui-with-theme/development-bundle/themes/trontastic"
+   last-author="gemiinii"
+   kind="dir"
+   repos="file:///home/gemiinii/webapps/wilwolf_svn"
+   revision="94"/>
+<entry
+   name="images"
+   kind="dir"/>
+<entry
+   committed-rev="94"
+   name="ui.all.css"
+   text-time="2009-07-24T17:04:28.000000Z"
+   committed-date="2009-07-24T20:08:31.530936Z"
+   checksum="6b95430e263d3de4e0a53352e56135f5"
+   last-author="gemiinii"
+   kind="file"/>
+</wc-entries>

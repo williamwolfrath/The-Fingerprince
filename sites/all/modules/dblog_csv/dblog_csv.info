@@ -1,0 +1,6 @@
+; $Id$
+name = Dblog to CSV
+description = Defines a file field type.
+dependencies[] = dblog
+package = Logs
+core = 6.x

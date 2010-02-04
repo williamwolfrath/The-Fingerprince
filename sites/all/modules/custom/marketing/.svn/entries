@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wc-entries
+   xmlns="svn:">
+<entry
+   committed-rev="71"
+   name=""
+   committed-date="2009-07-14T01:52:46.414092Z"
+   url="file:///home/gemiinii/webapps/wilwolf_svn/drupal/6/fingerprince/trunk/modules/marketing"
+   last-author="gemiinii"
+   kind="dir"
+   uuid="4c546e27-c469-0410-8e0c-86cc131382bf"
+   repos="file:///home/gemiinii/webapps/wilwolf_svn"
+   revision="71"/>
+<entry
+   committed-rev="92"
+   name="marketing-sent-email-full.tpl.php"
+   text-time="2009-07-24T19:27:49.000000Z"
+   committed-date="2009-07-24T20:05:05.739148Z"
+   checksum="0ac03e8d0bd73f1a35206e22e0e6fc20"
+   last-author="gemiinii"
+   kind="file"
+   revision="92"/>
+<entry
+   committed-rev="92"
+   name="marketing-sent-email.tpl.php"
+   text-time="2009-07-24T20:01:23.000000Z"
+   committed-date="2009-07-24T20:05:05.739148Z"
+   checksum="a6154e9762fcd0aedb876ebfdbf215fc"
+   last-author="gemiinii"
+   kind="file"
+   revision="92"/>
+<entry
+   committed-rev="92"
+   name="marketing-sent-emails.tpl.php"
+   text-time="2009-07-24T18:45:15.000000Z"
+   committed-date="2009-07-24T20:05:05.739148Z"
+   checksum="5a9fac00d5db8995f657c9e99f33f6e5"
+   last-author="gemiinii"
+   kind="file"
+   revision="92"/>
+<entry
+   committed-rev="93"
+   name="marketing-emails.js"
+   text-time="2009-07-24T19:25:26.000000Z"
+   committed-date="2009-07-24T20:05:28.987334Z"
+   checksum="87f6ba0e33fd52bedfa7f0937c7fc747"
+   last-author="gemiinii"
+   kind="file"
+   revision="93"/>
+<entry
+   committed-rev="95"
+   name="marketing.module"
+   text-time="2009-07-24T20:05:59.000000Z"
+   committed-date="2009-07-24T20:09:02.144037Z"
+   checksum="b93910761948e441e915782f648d3a35"
+   last-author="gemiinii"
+   kind="file"
+   revision="95"/>
+<entry
+   committed-rev="82"
+   name="marketing-email-body.tpl.php"
+   text-time="2009-07-17T20:33:47.000000Z"
+   committed-date="2009-07-17T21:03:49.151901Z"
+   checksum="319d8848ff0a6e13d77c16eadd363f69"
+   last-author="gemiinii"
+   kind="file"
+   revision="82"/>
+<entry
+   committed-rev="96"
+   name="marketing.install"
+   text-time="2009-07-24T03:08:38.000000Z"
+   committed-date="2009-07-24T20:09:25.082119Z"
+   checksum="aab8ff1cea755ebc410166548ab9aac6"
+   last-author="gemiinii"
+   kind="file"
+   revision="96"/>
+<entry
+   name="ui-with-theme"
+   kind="dir"/>
+<entry
+   committed-rev="79"
+   name="marketing.info"
+   text-time="2009-07-14T02:19:55.000000Z"
+   committed-date="2009-07-15T01:09:03.188653Z"
+   checksum="7c1c080b2bc78f58a67aba165cc8319e"
+   last-author="gemiinii"
+   kind="file"
+   revision="79"/>
+<entry
+   committed-rev="84"
+   name="marketing-email-create.tpl.php"
+   text-time="2009-07-21T16:47:59.000000Z"
+   committed-date="2009-07-21T16:59:04.696772Z"
+   checksum="628dd7f0c3f8f3d7a33f444e2a731f81"
+   last-author="gemiinii"
+   kind="file"
+   revision="84"/>
+</wc-entries>

@@ -1,0 +1,14 @@
+; $Id: cobalt.info,v 1.5 2009/04/22 07:18:17 hugowetterberg Exp $
+name = Cobalt
+core = "6.x"
+description = "Cobalt is a javascript implementation of Quicksilver for Drupal"
+package = "Cobalt"
+project = "cobalt"
+version = "6.x-1.x-dev"
+
+; Information added by drupal.org packaging script on 2009-06-15
+version = "6.x-1.4"
+core = "6.x"
+project = "cobalt"
+datestamp = "1245079835"
+

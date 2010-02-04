@@ -1,0 +1,4 @@
+name = FingerPrince Preview
+description = For showing preview versions of The Fingerprince
+package = GemiiniiDev
+core = 6.x

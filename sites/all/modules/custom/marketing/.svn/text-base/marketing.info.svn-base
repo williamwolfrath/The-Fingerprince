@@ -1,0 +1,4 @@
+name = FingerPrince Marketing
+description = To allow creation of marketing html emails using a template and web interface.
+package = GemiiniiDev
+core = 6.x

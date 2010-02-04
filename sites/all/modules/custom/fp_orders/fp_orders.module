@@ -1,0 +1,946 @@
+<?php
+
+function fp_orders_menu() {
+    $items = array();
+    
+    $items['order-quantity'] = array(
+       'title' => 'Order Quantity',
+       'description' => 'Shows custom order form for the quantity and emails for downloadable book.',
+       'page callback' => 'fp_orders_quantity_info',
+       'access callback' => TRUE,
+       'type' => MENU_CALLBACK,
+    );
+    $items['order-form'] = array(
+       'title' => 'Order',
+       'description' => 'Shows custom order form for downloadable book.',
+       'page callback' => 'fp_orders_cc_info',
+       'access callback' => TRUE,
+       'type' => MENU_CALLBACK,
+    );
+    $items['bwsess'] = array(
+       'title' => 'Session Test',
+       'description' => 'Nonsensical',
+       'page callback' => 'fp_orders_doit',
+       'access callback' => TRUE,
+       'type' => MENU_CALLBACK,
+    );
+    $items['order-review'] = array(
+       'title' => 'Order Review',
+       'description' => 'Review Order Before Submission',
+       'page callback' => 'fp_orders_review',
+       'access callback' => TRUE,
+       'type' => MENU_CALLBACK,
+    );
+    $items['order-conf'] = array(
+       'title' => 'Order Confirmation',
+       'description' => 'Order Confirmation',
+       'page callback' => 'fp_orders_confirmation',
+       'access callback' => TRUE,
+       'type' => MENU_CALLBACK,
+    );
+    $items['order-conf-printable'] = array(
+       'title' => 'Printable Order Confirmation',
+       'description' => 'Printable Order Confirmation',
+       'page callback' => 'fp_orders_printable_confirmation',
+       'access callback' => TRUE,
+       'type' => MENU_CALLBACK,
+    );
+    
+    return $items;
+}
+
+
+function fp_orders_doit() {
+    variable_set('fp_paypal_live_username', 'yuckygucky_api1.yahoo.com');
+    variable_set('fp_paypal_live_signature', 'ArUG8UsPVf.e49A.pmppoJBhgQEmAAbg6MnQ1anr.SYdGHuxvHBreG9o');
+    variable_set('fp_paypal_live_password', '5LRP9TSSXN7TAPE3');
+    variable_set('fp_paypal_env' , "live");
+    $output = "done";
+    //$output .= "<div style='color:black'>";
+    //$output .= "<pre>";
+    //$output .= "ORDER INFO:  ";
+    //$output .= print_r($_SESSION['order_info'], true);
+    //$order_info = $_SESSION['order_info'];
+    //$output .= "</pre>";
+    //$output .= "<br/>";
+    //$output .= "<pre>";
+    //$output .= "ORDER CONF:  ";
+    //$output .= print_r($_SESSION['order_conf'], true);
+    //$output .= "</pre>";
+    //$output .= "<br/>";
+    //$total = fp_orders_compute_total($order_info->num_copies_e_book, $order_info->num_copies_audio_e_book);
+    //$output .= "The total is " . $total;
+    //$output .= "</div>";
+    return $output;
+}
+
+
+
+function fp_orders_cc_info() {
+    $rendered = drupal_get_form('fp_orders_order_form');
+    $output = theme('fp-orders-order', $rendered);
+    watchdog('fp', 'current order: ' . print_r($_SESSION['order_info'], true));
+    return $output;
+}
+
+
+
+
+function fp_orders_quantity_info() {
+    //drupal_add_js(drupal_get_path('module', 'fp_orders') . '/fp_orders.js');
+    $rendered = drupal_get_form('fp_orders_quantity_form');
+    $output = theme('fp-orders-quantity', $rendered);
+    return $output;
+}
+
+
+
+
+function fp_orders_review() {
+    // get all the order information and print it for review
+    $order_info = $_SESSION['order_info'];
+    if ( empty($order_info) ) {
+        drupal_set_message("Please click the order form link to begin ordering.");
+        return "";
+    }
+    $total = fp_orders_compute_total($order_info->num_copies_e_book, $order_info->num_copies_audio_e_book);
+    // there are a billion ways to do this multistep form
+    // but at least this gives me more control over the layouts of each page
+    $blank_form = drupal_get_form('fp_orders_review_form');  // really just for use of the submit button
+    $output = theme('fp-orders-review', $blank_form, $order_info, $total);
+    return $output;
+}
+
+
+
+function fp_orders_confirmation() {
+    $order_conf = $_SESSION['order_conf'];
+    if ( empty($order_conf) ) {
+        drupal_set_message("Please click the order form link to begin ordering.");
+        return "";
+    }
+    $output = theme('fp-orders-conf', $order_conf);
+    return $output;
+}
+
+
+function fp_orders_printable_confirmation() {
+    $order_conf = $_SESSION['order_conf'];
+    if ( empty($order_conf) ) {
+        drupal_set_message("Please click the order form link to begin ordering.");
+        return "";
+    }
+    $output = theme('fp-orders-printable-conf', $order_conf);
+    return $output;
+}
+
+
+
+function fp_orders_quantity_form() {
+    $form['e_book'] = array(
+        '#type' => 'fieldset',    
+    );
+    
+    $form['e_book']['num_copies_e_book'] = array(
+        '#type' => 'textfield',
+        '#title' => 'number of copies',
+        '#required' => false,
+        '#default_value' => '',
+        '#maxlength' => 3,
+    );
+    
+    $form['e_book']['e_book_email_1'] = array(
+        '#type' => 'textfield',
+        '#title' => 'email to',
+        '#required' => false,
+        '#default_value' => '',
+        '#maxlength' => 50,
+    );
+    
+    $form['e_book']['e_book_email_2'] = array(
+        '#type' => 'textfield',
+        '#title' => '',
+        '#required' => false,
+        '#default_value' => '',
+        '#maxlength' => 50,
+    );
+    
+    $form['e_book']['e_book_email_3'] = array(
+        '#type' => 'textfield',
+        '#title' => '',
+        '#required' => false,
+        '#default_value' => '',
+        '#maxlength' => 50,
+    );
+    
+    $form['e_book']['e_book_email_4'] = array(
+        '#type' => 'textfield',
+        '#title' => '',
+        '#required' => false,
+        '#default_value' => '',
+        '#maxlength' => 50,
+    );
+    
+    $form['audio_e_book'] = array(
+        '#type' => 'fieldset',    
+    );
+    
+    $form['audio_e_book']['num_copies_audio_e_book'] = array(
+        '#type' => 'textfield',
+        '#title' => 'number of copies',
+        '#required' => false,
+        '#default_value' => '',
+        '#maxlength' => 3,
+    );
+    
+    $form['audio_e_book']['audio_e_book_email_1'] = array(
+        '#type' => 'textfield',
+        '#title' => 'email to',
+        '#required' => false,
+        '#default_value' => '',
+        '#maxlength' => 50,
+    );
+    
+    $form['audio_e_book']['audio_e_book_email_2'] = array(
+        '#type' => 'textfield',
+        '#title' => '',
+        '#required' => false,
+        '#default_value' => '',
+        '#maxlength' => 50,
+    );
+    
+    $form['audio_e_book']['audio_e_book_email_3'] = array(
+        '#type' => 'textfield',
+        '#title' => '',
+        '#required' => false,
+        '#default_value' => '',
+        '#maxlength' => 50,
+    );
+    
+    $form['audio_e_book']['audio_e_book_email_4'] = array(
+        '#type' => 'textfield',
+        '#title' => '',
+        '#required' => false,
+        '#default_value' => '',
+        '#maxlength' => 50,
+    );
+    
+    $form['submit'] = array(
+	'#type' => 'submit',
+	'#value' => t('submit'),
+    );
+    return $form;
+}
+
+
+
+
+function fp_orders_quantity_form_validate($form, $form_state) {
+    // email validator courtesy of David Child at http://code.google.com/p/php-email-address-validation/
+    require_once('EmailAddressValidator.php'); 
+    
+    watchdog("fp", "quantity form: " . print_r($form_state, true));
+    
+    if ( $form_state['values']['num_copies_e_book'] == "" && $form_state['values']['num_copies_audio_e_book'] == "" ) {
+        form_set_error('', "Please enter at a number of copies for at least one type of book.");
+        return false;
+    }
+
+    $num_copies_e_book = 0;
+    $num_copies_audio_e_book = 0;
+    
+    
+    if ( !$form_state['values']['num_copies_e_book'] == "" ) {
+        $num_copies_e_book = (int)$form_state['values']['num_copies_e_book'];
+        if ( !($num_copies_e_book>0 && $num_copies_e_book<5) ) {
+            form_set_error("", "Please enter a number of copies between 1 and 4.");
+            return false;
+        }
+        if ( $form_state['values']['e_book_email_1'] == "" ) {
+            form_set_error('', "Please enter email addresses for each e book starting with the first text box.");
+            return false;
+        }
+        if ( $num_copies_e_book == 2 && $form_state['values']['e_book_email_2'] == "" ) {
+            form_set_error('', "Please enter email addresses for each e book starting with the first text box.");
+            return false;
+        }
+        if ( $num_copies_e_book == 3 && $form_state['values']['e_book_email_3'] == "" ) {
+            form_set_error('', "Please enter email addresses for each e book starting with the first text box.");
+            return false;
+        }
+        if ( $num_copies_e_book == 4 && $form_state['values']['e_book_email_4'] == "" ) {
+            form_set_error('', "Please enter email addresses for each e book starting with the first text box.");
+            return false;
+        }
+    }
+    if ( !$form_state['values']['num_copies_audio_e_book'] == "" ) {
+        $num_copies_audio_e_book = (int)$form_state['values']['num_copies_audio_e_book'];
+        if ( !($num_copies_audio_e_book>0 && $num_copies_audio_e_book<5) ) {
+            form_set_error("", "Please enter a number of copies between 1 and 4.");
+            return false;
+        }
+        if ( $form_state['values']['audio_e_book_email_1'] == "" ) {
+            form_set_error('', "Please enter email addresses for each audio e book starting with the first text box.");
+            return false;
+        }
+        if ( $num_copies_audio_e_book == 2 && $form_state['values']['audio_e_book_email_2'] == "" ) {
+            form_set_error('', "Please enter email addresses for each audio e book starting with the first text box.");
+            return false;
+        }
+        if ( $num_copies_audio_e_book == 3 && $form_state['values']['audio_e_book_email_3'] == "" ) {
+            form_set_error('', "Please enter email addresses for each audio e book starting with the first text box.");
+            return false;
+        }
+        if ( $num_copies_audio_e_book == 4 && $form_state['values']['audio_e_book_email_4'] == "" ) {
+            form_set_error('', "Please enter email addresses for each audio e book starting with the first text box.");
+            return false;
+        }
+    }
+    // check any entered email addresses for proper format
+    $validator = new EmailAddressValidator;
+    log_debug('ebook email 1: [' . $form_state['values']['e_book_email_1'] . ']');
+    if ( !($form_state['values']['e_book_email_1'] == "") ) {
+        $form_state['values']['e_book_email_1'] = trim($form_state['values']['e_book_email_1']);
+        if ( !($validator->check_email_address($form_state['values']['e_book_email_1'])) ) {
+            $form_state['values']['e_book_email_1'] = trim($form_state['values']['e_book_email_1']);
+            form_set_error('', "E book email address 1 is not valid.");
+            return false;
+        }
+    }
+    if ( !($form_state['values']['e_book_email_2'] == "") ) {
+        $form_state['values']['e_book_email_2'] = trim($form_state['values']['e_book_email_2']);
+        if ( !($validator->check_email_address($form_state['values']['e_book_email_2'])) ) {
+            form_set_error('', "E book email address 2 is not valid.");
+            return false;
+        }
+    }
+    if ( !($form_state['values']['e_book_email_3'] == "") ) {
+        $form_state['values']['e_book_email_3'] = trim($form_state['values']['e_book_email_3']);
+        if ( !($validator->check_email_address($form_state['values']['e_book_email_3'])) ) {
+            form_set_error('', "E book email address 3 is not valid.");
+            return false;
+        }
+    }
+    if ( !($form_state['values']['e_book_email_4'] == "") ) {
+        $form_state['values']['e_book_email_4'] = trim($form_state['values']['e_book_email_4']);
+        if ( !($validator->check_email_address($form_state['values']['e_book_email_4'])) ) {
+            form_set_error('', "E book email address 4 is not valid.");
+            return false;
+        }
+    }
+    
+    log_debug('audio ebook email 1: [' . $form_state['values']['audio_e_book_email_1'] . ']');
+    if ( !($form_state['values']['audio_e_book_email_1'] == "") ) {
+        $form_state['values']['audio_e_book_email_1'] = trim($form_state['values']['audio_e_book_email_1']);
+        if ( !($validator->check_email_address($form_state['values']['audio_e_book_email_1'])) ) {
+            form_set_error('', "Audio e book email address 1 is not valid.");
+            return false;
+        }
+    }
+    if ( !($form_state['values']['audio_e_book_email_2'] == "") ) {
+        $form_state['values']['audio_e_book_email_2'] = trim($form_state['values']['audio_e_book_email_2']);
+        if ( !($validator->check_email_address($form_state['values']['audio_e_book_email_2'])) ) {
+            form_set_error('', "Audio e book email address 2 is not valid.");
+            return false;
+        }
+    }
+    if ( !($form_state['values']['audio_e_book_email_3'] == "") ) {
+        $form_state['values']['audio_e_book_email_3'] = trim($form_state['values']['audio_e_book_email_3']);
+        if ( !($validator->check_email_address($form_state['values']['audio_e_book_email_3'])) ) {
+            form_set_error('', "Audio e book email address 3 is not valid.");
+            return false;
+        }
+    }
+    if ( !($form_state['values']['audio_e_book_email_4'] == "") ) {
+        $form_state['values']['audio_e_book_email_4'] = trim($form_state['values']['audio_e_book_email_4']);
+        if ( !($validator->check_email_address($form_state['values']['audio_e_book_email_4'])) ) {
+            form_set_error('', "Audio e book email address 4 is not valid.");
+            return false;
+        }
+    }
+    return true;
+}
+
+
+function fp_orders_quantity_form_submit($form, $form_state) {
+    // store quantity and email info and move to the payment page
+    $order_info = new stdClass();
+    $order_info->num_copies_e_book = 0;  // init
+    $order_info->num_copies_audio_e_book = 0;  // init
+    $e_book_emails = array();
+    $audio_e_book_emails = array();
+    if ( !$form_state['values']['num_copies_e_book'] == "" ) {
+        $order_info->num_copies_e_book = $form_state['values']['num_copies_e_book'];
+        if ( !$form_state['values']['e_book_email_1'] == "" ) {
+            $e_book_emails[] = $form_state['values']['e_book_email_1'];
+        }
+        if ( !$form_state['values']['e_book_email_2'] == "" ) {
+            $e_book_emails[] = $form_state['values']['e_book_email_2'];
+        }
+        if ( !$form_state['values']['e_book_email_3'] == "" ) {
+            $e_book_emails[] = $form_state['values']['e_book_email_3'];
+        }
+        if ( !$form_state['values']['e_book_email_4'] == "" ) {
+            $e_book_emails[] = $form_state['values']['e_book_email_4'];
+        }
+        $order_info->e_book_emails = $e_book_emails;
+    }
+    if ( !$form_state['values']['num_copies_audio_e_book'] == "" ) {
+        $order_info->num_copies_audio_e_book = $form_state['values']['num_copies_audio_e_book'];
+        if ( !$form_state['values']['audio_e_book_email_1'] == "" ) {
+            $audio_e_book_emails[] = $form_state['values']['audio_e_book_email_1'];
+        }
+        if ( !$form_state['values']['audio_e_book_email_2'] == "" ) {
+            $audio_e_book_emails[] = $form_state['values']['audio_e_book_email_2'];
+        }
+        if ( !$form_state['values']['audio_e_book_email_3'] == "" ) {
+            $audio_e_book_emails[] = $form_state['values']['audio_e_book_email_3'];
+        }
+        if ( !$form_state['values']['audio_e_book_email_4'] == "" ) {
+            $audio_e_book_emails[] = $form_state['values']['audio_e_book_email_4'];
+        }
+        $order_info->audio_e_book_emails = $audio_e_book_emails;
+    }
+    $_SESSION['order_info'] = $order_info;  // save the order object in the session for the next page...
+    drupal_goto('order-form');
+}
+
+
+function fp_orders_order_form(){
+	
+        global $user;
+	$start_year = date("Y");
+	$exp_year_options = array(""=>"Year");
+	for ($next = $start_year ; $next < $start_year + 10; $next ++){
+		$exp_year_options[$next] = $next;
+	}
+	
+	$exp_month_options = array(""=>"Month");
+	for ($next = 1; $next <= 12; $next ++){
+		$exp_month_options[$next] = date("M", strtotime($start_year."-".$next));
+	}
+	
+	$card_type_options = array(
+		"" => "Please Select",
+		"Visa" => "Visa",
+		"MasterCard" => "MasterCard",
+		"Discover" => "Discover", 
+		"Amex" => "American Express",
+	);
+	$state_options = array('AL'=>"Alabama",  
+			'AK'=>"Alaska",  
+			'AZ'=>"Arizona",  
+			'AR'=>"Arkansas",  
+			'CA'=>"California",  
+			'CO'=>"Colorado",  
+			'CT'=>"Connecticut",  
+			'DE'=>"Delaware",  
+			'DC'=>"District Of Columbia",  
+			'FL'=>"Florida",  
+			'GA'=>"Georgia",  
+			'HI'=>"Hawaii",  
+			'ID'=>"Idaho",  
+			'IL'=>"Illinois",  
+			'IN'=>"Indiana",  
+			'IA'=>"Iowa",  
+			'KS'=>"Kansas",  
+			'KY'=>"Kentucky",  
+			'LA'=>"Louisiana",  
+			'ME'=>"Maine",  
+			'MD'=>"Maryland",  
+			'MA'=>"Massachusetts",  
+			'MI'=>"Michigan",  
+			'MN'=>"Minnesota",  
+			'MS'=>"Mississippi",  
+			'MO'=>"Missouri",  
+			'MT'=>"Montana",
+			'NE'=>"Nebraska",
+			'NV'=>"Nevada",
+			'NH'=>"New Hampshire",
+			'NJ'=>"New Jersey",
+			'NM'=>"New Mexico",
+			'NY'=>"New York",
+			'NC'=>"North Carolina",
+			'ND'=>"North Dakota",
+			'OH'=>"Ohio",  
+			'OK'=>"Oklahoma",  
+			'OR'=>"Oregon",  
+			'PA'=>"Pennsylvania",  
+			'RI'=>"Rhode Island",  
+			'SC'=>"South Carolina",  
+			'SD'=>"South Dakota",
+			'TN'=>"Tennessee",  
+			'TX'=>"Texas",  
+			'UT'=>"Utah",  
+			'VT'=>"Vermont",  
+			'VA'=>"Virginia",  
+			'WA'=>"Washington",  
+			'WV'=>"West Virginia",  
+			'WI'=>"Wisconsin",  
+			'WY'=>"Wyoming"
+        );
+	$form['fp_orders_billing'] = array(
+		'#type' => 'fieldset',
+		'#title' => t('Please enter your billing information'),
+	);
+	$form['fp_orders_billing']['first_name'] = array(
+		'#type' => 'textfield',
+		'#title' => t('First Name'),
+		'#required' => true,
+		'#default_value' => '',
+		'#attributes' => array('style'=>"width:150px"),
+	);
+        
+	$form['fp_orders_billing']['last_name'] = array(
+		'#type' => 'textfield',
+		'#title' => t('Last Name'),
+		'#required' => true,
+		'#default_value' => '',
+		'#attributes' => array('style'=>"width:150px"),
+	);
+	$form['fp_orders_billing']['address1'] = array(
+		'#type' => 'textfield',
+		'#title' => t('Address'),
+		'#required' => true,
+		'#default_value' => '',
+		'#attributes' => array('style'=>"width:150px"),
+	);
+	$form['fp_orders_billing']['address2'] = array(
+		'#type' => 'textfield',
+		'#required' => false,
+		'#default_value' => '',
+		'#attributes' => array('style'=>"width:150px"),
+	);
+	$form['fp_orders_billing']['city'] = array(
+		'#type' => 'textfield',
+		'#title' => t('City'),
+		'#required' => true,
+		'#default_value' => '',
+		'#attributes' => array('style'=>"width:150px"),
+	);
+        $form['fp_orders_billing']['state'] = array(
+		'#type' => 'select',
+		'#title' => t('State'),
+		'#required' => true,
+		'#default_value' => '',
+		'#options' => $state_options,
+	);
+	$form['fp_orders_billing']['zip'] = array(
+		'#type' => 'textfield',
+		'#title' => t('Zip'),
+		'#required' => true,
+		'#default_value' => '',
+		'#attributes' => array('style'=>"width:150px"),
+	);
+        $form['fp_orders_billing']['buyer_email'] = array(
+		'#type' => 'textfield',
+		'#title' => t('Your Email'),
+		'#required' => true,
+		'#default_value' => '',
+		'#attributes' => array('style'=>"width:150px"),
+	);
+	$form['fp_orders_billing']['country'] = array('#type' => 'hidden', '#value' => "US");
+	
+	$form['fp_orders_card'] = array(
+		'#type' => 'fieldset',
+		'#title' => t('Please enter your credit card information'),
+	);
+	$form['fp_orders_card']['card_type'] = array(
+		'#type' => 'select',
+		'#title' => t('Card Type#'),
+		'#required' => true,
+		'#default_value' => '',
+		'#options' => $card_type_options,
+	);
+	$form['fp_orders_card']['card_number'] = array(
+		'#type' => 'textfield',
+		'#title' => t('Card Number#'),
+		'#required' => true,
+		'#default_value' => '',
+		'#attributes' => array('style'=>"width:150px"),
+	);
+	$form['fp_orders_card']['exp_month'] = array(
+		'#type' => 'select',
+		'#title' => t('Exp Month'),
+		'#required' => true,
+		'#default_value' => '',
+		'#options' => $exp_month_options,
+  	);
+	$form['fp_orders_card']['exp_year'] = array(
+		'#type' => 'select',
+		'#title' => t('Exp Year'),
+		'#required' => true,
+		'#default_value' => '',
+		'#options' => $exp_year_options,
+  	);
+	$form['fp_orders_card']['cvv'] = array(
+		'#type' => 'textfield',
+		'#title' => t('CVV'),
+		'#required' => true,
+		'#attributes' => array('style'=>"width:100px"),
+	);
+	
+	
+	$form['submit'] = array(
+		'#type' => 'submit',
+		'#value' => t('Submit'),
+	);
+	
+	$paypal_env = variable_get('fp_paypal_env' , "sandbox");
+	if ( ($paypal_env == "sandbox") || ($user->name=="peter") || ($user->name=="misha") ) {  // test away!
+		$form['fp_orders_card']['#title'] = "Credit Card Information"; 
+		$form['fp_orders_card']['card_number']['#default_value'] = '4552203357162902';
+                $form['fp_orders_billing']['first_name']['#default_value'] = '';
+                $form['fp_orders_billing']['last_name']['#default_value'] = '';
+                $form['fp_orders_billing']['address1']['#default_value'] = 'fakeaddr';
+                $form['fp_orders_billing']['address2']['#default_value'] = '';
+                $form['fp_orders_billing']['city']['#default_value'] = 'fakecity';
+                $form['fp_orders_billing']['state']['#default_value'] = 'NY';
+                $form['fp_orders_billing']['zip']['#default_value'] = '10020';
+                $form['fp_orders_billing']['buyer_email']['#default_value'] = 'peter@thefingerprince.com';
+                $form['fp_orders_card']['card_type']['#default_value'] = "Visa";
+                $form['fp_orders_card']['exp_month']['#default_value'] = 5;
+                $form['fp_orders_card']['exp_year']['#default_value'] = "2011";
+                $form['fp_orders_card']['cvv']['#default_value'] = "123";
+	}
+	return $form;
+}
+
+
+function fp_orders_review_form() {
+    $form['tmp'] = array('#type' => 'hidden', '#value' => "tmp");
+    $form['submit'] = array(
+	    '#type' => 'submit',
+	    '#value' => t('Place Order'),
+    );
+    return $form;
+}
+
+function fp_orders_review_form_validate($form, $form_state) {
+    watchdog('fp', 'review validate called');
+}
+
+
+// computes the total based on the order in the session
+// when i have time i want to put the prices in an admin page
+function fp_orders_compute_total($num_copies_e_book, $num_copies_audio_e_book) {
+    return ( ($num_copies_e_book * 5.00) + ($num_copies_audio_e_book * 10.00) );
+}
+
+
+
+function fp_orders_order_form_validate($form, $form_state) {
+    watchdog('fp', 'fp order validate');
+    require_once('EmailAddressValidator.php'); 
+    $order_info = $_SESSION['order_info'];
+    if ( empty($order_info) ) {
+        form_set_error("", "Please click the order form link to begin ordering.");
+        return false;
+    }
+    
+    $validator = new EmailAddressValidator;
+    if ( !($validator->check_email_address($form_state['values']['buyer_email'])) ) {
+        form_set_error("buyer_email", "Please enter a valid email address.");
+    }
+    return true;
+}
+
+
+
+
+function fp_orders_order_form_submit($form, $form_state) {
+        watchdog('fp', 'order form check');
+        
+        $order_info = $_SESSION['order_info'];
+        $amount =  fp_orders_compute_total($order_info->num_copies_e_book, $order_info->num_copies_audio_e_book);
+        if ( !$amount ) {
+            watchdog('fp', 'no amount, going back to order form');
+            drupal_goto("order-form");  // last minute bailout - shouldn't happen
+        }
+	
+	$payment_info = array();
+	$payment_info['FIRSTNAME'] 		        = $form_state['values']['first_name'];
+	$payment_info['LASTNAME']  		        = $form_state['values']['last_name'];
+	$payment_info['AMT']			        = $amount;
+	$payment_info['CREDITCARDTYPE']                 = $form_state['values']['card_type'];
+	$payment_info['ACCT'] 			        = $form_state['values']['card_number'];
+	if ($form_state['values']['exp_month']&& $form_state['values']['exp_year']){
+		$payment_info['EXPDATE']		= sprintf("%02d%04d", $form_state['values']['exp_month'], $form_state['values']['exp_year']);
+	}
+	$payment_info['CVV2']			        = $form_state['values']['cvv'];
+	$payment_info['IPADDRESS']		        = $_SERVER['SERVER_ADDR'];
+	
+	$payment_info['STREET']			        = $form_state['values']['address1'];
+	$payment_info['STREET2'] 		        = $form_state['values']['address2'];
+	$payment_info['CITY']			        = $form_state['values']['city'];
+	$payment_info['STATE']			        = $form_state['values']['state'];
+	$payment_info['ZIP']			        = $form_state['values']['zip'];
+	$payment_info['COUNTRYCODE']	                = $form_state['values']['country'];
+	watchdog('fp', 'payment info: ' . print_r($payment_info, true));  // REMOVE!!
+
+        $order_info->payment_info = $payment_info;
+        $order_info->buyer_email = $form_state['values']['buyer_email'];
+        watchdog('fp_order', 'order form validate: buyer email is ' . $order_info->buyer_email);
+        $_SESSION['order_info'] = $order_info;
+        watchdog('fp-order', "order info is " . print_r($order_info, true));
+        drupal_goto("order-review");
+}
+
+
+function fp_orders_order_save($order_info) {
+    $order = new stdClass();
+    $order->num_e_books = $order_info->num_copies_e_book;
+    $order->num_audio_e_books = $order_info->num_copies_audio_e_book;
+    $order->buyer_email = $order_info->buyer_email;
+    drupal_write_record('fp_order', $order);
+    // save the email addresses in their respective tables
+    if ( !empty($order_info->e_book_emails) ) {
+        foreach ( $order_info->e_book_emails as $e_book_email ) {
+            $fp_e_book_email = new stdClass();
+            $fp_e_book_email->oid = $order->id;
+            $fp_e_book_email->email = $e_book_email;
+            drupal_write_record('fp_order_e_book_emails', $fp_e_book_email);
+        }
+    }
+    if ( !empty($order_info->audio_e_book_emails) ) {
+        foreach ( $order_info->audio_e_book_emails as $audio_e_book_email ) {
+            $fp_audio_e_book_email = new stdClass();
+            $fp_audio_e_book_email->oid = $order->id;
+            $fp_audio_e_book_email->email = $audio_e_book_email;
+            drupal_write_record('fp_order_audio_e_book_emails', $fp_audio_e_book_email);
+        }
+    }
+    return $order->id;
+}
+
+
+function fp_orders_transaction_save($order_id, $payment, $result){
+	$now = date("Y-m-d H:i:s");
+	
+	//save in to ui_transcation;
+	$transaction = new stdClass();
+	$transaction->transaction_id 	        = $result['transaction_id'];
+        $transaction->oid                                 = $order_id;
+	if (isset($payment['FIRSTNAME'])){
+		$transaction->first_name		= $payment['FIRSTNAME'];
+	}
+	if (isset($payment['LASTNAME'])){
+		$transaction->last_name		= $payment['LASTNAME'];
+	} 
+	$transaction->amount			        = $payment['AMT'];
+	$transaction->note				= "type:".$type."; ".$result['message'];
+	$transaction->created			        = $now;
+	drupal_write_record('fp_transaction', $transaction);
+	
+	if (isset($payment['STREET'])){
+		$address = new stdClass();
+		$address->tid = $transaction->tid;
+		$address->address1 				= $payment['STREET'];
+		$address->address2 				= $payment['STREET2'];
+		$address->zip 					= $payment['ZIP'];
+		$address->city 					= $payment['CITY'];
+		$address->state 				= $payment['STATE'];
+		$address->country_code 			= $payment['COUNTRYCODE'];
+		drupal_write_record('fp_address', $address);
+	}
+	
+	return $transaction->tid;
+}
+
+
+
+function fp_orders_review_form_submit($form, $form_state) {
+        watchdog('fp', 'order submission....');
+        require_once 'fp_paypal.php';
+        
+        $order_info = $_SESSION['order_info'];
+        log_debug("order info obj: ", $order_info);
+        $amount =  fp_orders_compute_total($order_info->num_copies_e_book, $order_info->num_copies_audio_e_book);
+        
+        if ( $amount == 0 ) {
+            watchdog('fp', 'no amount, going back to order form');
+            drupal_goto("order-form");  // last minute bailout - shouldn't happen
+        }
+	
+	$payment_info = $order_info->payment_info;
+        
+	$paypal_env = variable_get('fp_paypal_env' , "sandbox");
+        global $user;
+        if ( $user->name=="peter" || $user->name=="misha" ) {
+            $paypal_env = "sandbox";
+        }
+	if ($paypal_env == "live"){
+		$api_username  = variable_get('fp_paypal_live_username' , "");
+		$api_password  = variable_get('fp_paypal_live_password' , "");
+		$api_signature = variable_get('fp_paypal_live_signature' , "");
+	}
+	else {
+		$api_username  = variable_get('fp_paypal_sandbox_username' , "");
+		$api_password  = variable_get('fp_paypal_sandbox_password' , "");
+		$api_signature = variable_get('fp_paypal_sandbox_signature' , "");
+	}
+	
+	#var_dump($api_username, $api_password, $api_signature);
+	if ($payment_info['CREDITCARDTYPE'] && $payment_info['ACCT'] && $payment_info['EXPDATE'] && $payment_info['CVV2']){
+		$profile = fp_paypal_create_profile($api_username, $api_password, $api_signature, $paypal_env);
+		$result = fp_paypal_directpayment($profile, $payment_info);
+		
+		/*$result = array();
+		$result['result'] = "success";
+		$result['transaction_id'] = rand(1 , 123456789012);
+		$result['message'] = "";*/
+		watchdog('fp', 'result of direct payment is ' . print_r($result, true));
+		if ($result['result'] == "failure"){
+			form_set_error("", t($result['message']));
+		}
+		else {
+			global $user;
+			watchdog("fp", "successful PayPal payment.");
+                        $oid = fp_orders_order_save($order_info);
+                        // then save the transaction
+                        $tid = fp_orders_transaction_save($oid, $payment_info, $result);
+                        $order_info->payment_info = $payment_info;
+                        // put the order IDs in the session so we put the info on the conf page
+                        // get rid of the payment info
+                        $order_conf = new stdClass();
+                        $order_conf->num_copies_e_book = $order_info->num_copies_e_book;
+                        $order_conf->num_copies_audio_e_book = $order_info->num_copies_audio_e_book;
+                        $order_conf->e_book_emails = $order_info->e_book_emails;
+                        $order_conf->audio_e_book_emails = $order_info->audio_e_book_emails;
+                        $order_conf->total = $amount;
+                        $order_conf->cc = $order_info->payment_info['CREDITCARDTYPE'];
+                        $order_conf->acct = "************" . substr($order_info->payment_info['ACCT'], -4);
+                        $order_conf->from_name = $order_info->payment_info['FIRSTNAME'] . ' ' . $order_info->payment_info['LASTNAME'];
+                        $_SESSION['order_conf'] = $order_conf;
+                        //$_SESSION['order_info'] = null;
+                        $params['account'] = $user;
+                        
+                        watchdog('fp_orders', 'trying to email the buyer...');
+                        watchdog('fp_orders', 'the buyer email is ' . $order_info->buyer_email);
+                        // send an email to the buyer
+                        $params['to_address'] = $order_info->buyer_email;
+                        $params['subject'] = "Your FingerPrince order confirmation";
+                        $total = fp_orders_compute_total($order_info->num_copies_e_book, $order_info->num_copies_audio_e_book);
+                        $params['email_body'] = theme('fp-orders-printable-conf', $order_conf);
+                        
+                        watchdog('fp_orders conf', 'order info is ' . print_r($order_info, true));
+                        watchdog('fp_orders conf', 'order conf is ' . print_r($order_conf, true));
+                        watchdog('fp_orders', 'the buyer email body is ' . $params['email_body']);
+                        
+                        drupal_mail('fp_orders', 'emails', $order_info->buyer_email, user_preferred_language($user), $params, "peter@thefingerprince.com");
+                        
+                        
+                        
+                        // send an email to each recipient
+                        if ( $order_conf->e_book_emails ) {
+                            foreach ( $order_conf->e_book_emails as $ebe ) {
+                                $order_type = 'non audio';
+                                $email_body = theme('fp-orders-conf-email', $order_conf, $order_type);
+                                $params['to_address'] = $ebe;
+                                $params['subject'] = "Your FingerPrince e book";
+                                $params['email_body'] = $email_body;
+                                drupal_mail('fp_orders', 'emails', $ebe, user_preferred_language($user), $params, "peter@thefingerprince.com"); 
+                            }
+                        }
+                        
+                        if ( $order_conf->audio_e_book_emails ) {
+                            foreach ( $order_conf->audio_e_book_emails as $aebe ) {
+                                $order_type = 'audio';
+                                $email_body = theme('fp-orders-conf-email', $order_conf, $order_type);
+                                $params['to_address'] = $aebe;
+                                $params['subject'] = "Your FingerPrince e book";
+                                $params['email_body'] = $email_body;
+                                drupal_mail('fp_orders', 'emails', $aebe, user_preferred_language($user), $params, "peter@thefingerprince.com"); 
+                            }
+                        }
+                        
+                        drupal_goto("order-conf");
+		}
+	}
+}
+
+
+
+function fp_orders_mail($key, &$message, $params) {
+    $language = $message['language'];
+    log_debug("mail function: params is ", $params);
+    switch ($key) {
+        case 'emails':
+            //watchdog('marketing-message', print_r($message, true));
+            //watchdog('marketing-params', print_r($params, true));
+            $boundary = '----=_NextPart_'.md5(uniqid());
+            $message['headers']['Content-Type'] = "multipart/alternative; charset=utf-8; boundary=\"$boundary\"";
+            //$message['headers']['Content-Type'] = "text/html; charset=utf-8; format=flowed;";
+            $message['subject'] = $params['subject'];
+            //watchdog('marketing-message2', print_r($message, true));
+            $body_text = _orders_create_email_body($params['email_body'], $boundary);
+            $message['body'][] = $body_text;
+            break; 
+    }
+}
+
+
+
+function _orders_create_email_body($body, $boundary) {
+    $bhtml= filter_filter("process", 1, -1, $body);
+    
+    //make sure original HTML had nice line breaks 
+    $btext = preg_replace('/<style>.+?<\/style>/ims', '', $bhtml); 
+    $btext = strip_tags( $btext ); 
+    $multi_body  = "
+    
+        This is a multi-part message in MIME format.
+    
+        --$boundary
+        Content-Type: text/plain; charset=UTF-8; format=flowed; 
+        Content-Transfer-Encoding: 8bit
+    
+        $btext
+    
+        --$boundary
+        Content-Type: text/html; charset=UTF-8; format=flowed; 
+        Content-Transfer-Encoding: 8bit
+    
+        $bhtml
+    
+    ";
+
+    return $multi_body;
+}
+
+
+
+
+
+function fp_orders_theme() {
+    return array(
+       'fp-orders-order' => array(
+            'template' => 'fp_order_form',
+            'arguments' => array('rform'=>$rendered),
+        ),
+       'fp-orders-quantity' => array(
+            'template' => 'fp_order_quantity_form',
+            'arguments' => array('rform'=>$rendered),
+        ),
+       'fp-orders-review' => array(
+            'template' => 'fp_order_review',
+            'arguments' => array('blankform'=>$blank_form, 'order'=>$order_info, 'total'=>$total),
+        ),
+       'fp-orders-buyer-email' => array(
+            'template' => 'fp_order_buyer_email',
+            'arguments' => array('order'=>$order_info, 'total'=>$total),
+        ),
+       'fp-orders-conf' => array(
+            'template' => 'fp_order_conf',
+            'arguments' => array('order'=>$order_conf),
+        ),
+       'fp-orders-printable-conf' => array(
+            'template' => 'fp_order_printable_conf',
+            'arguments' => array('order'=>$order_conf),
+        ),
+       'fp-orders-conf-email' => array(
+            'template' => 'fp_order_conf_email',
+            'arguments' => array('order'=>$order_conf, 'order_type'=>$order_type),
+        ),
+    );
+}

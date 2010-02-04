@@ -1,0 +1,131 @@
+<?php
+
+
+function bwplayground_install() {
+	// Use schema API to create database table.
+	drupal_install_schema('bwplayground');
+	drupal_set_message('UI pm expire tables have been installed.');
+	drupal_set_message('UI pm transaction tables have been installed.');
+}
+
+function bwplayground_uninstall() {
+	// Use schema API to destroy database table.
+	drupal_uninstall_schema('bwplayground');
+	drupal_set_message('UI pm expire tables have been removed.');
+	drupal_set_message('UI pm transaction tables have been removed.');
+}
+
+
+function bwplayground_schema() {
+	$schema['ui_pm_transaction'] = array(
+		'description' => t('Urban Interns PM Transaction Information.'),
+		'fields' => array(
+			'tid' => array('type' => 'serial',
+				'unsigned' => TRUE,
+				'not null' => TRUE,
+				'description' => t('The id of the transaction.'),
+			),
+			'uid' => array(
+				'type' => 'int',
+				'unsigned' => TRUE,
+				'not null' => TRUE,
+				'default' => 0,
+				'description' => t('The {user}.uid')
+			),
+			'transaction_id' => array(
+				'type' => 'varchar',
+				'not null' => true,
+			    'length' => '40',
+				'default' => '',
+				'description' => t('The transaction which returns from paypal')
+			),
+			'first_name' => array(
+				'type' => 'varchar',
+				'not null' => true,
+			    'length' => '40',
+				'default' => '',
+				'description' => t('The first name of payer')
+			),
+			'last_name' => array(
+				'type' => 'varchar',
+				'not null' => true,
+			    'length' => '40',
+				'default' => '',
+				'description' => t('The last name of payer')
+			),
+			'amount' => array(
+				'type' => 'numeric', 
+				'size' => 'normal', 
+				'not null' => TRUE, 
+				'default' => 0, 
+				'precision' => 10, 
+				'scale' => 2,
+				'description' => t('The amount of transaction')
+			),
+			'note' => array(
+				'description' => t('The text of the transation.'),
+				'type' => 'text',
+				'not null' => true,
+				'size' => 'normal'
+			),
+			'created' => array(
+				'description' => t('the date of payment'),
+				'type' => 'datetime',
+				'not null' => false,
+			),
+		),
+		'primary key' => array(
+			'tid'
+		),
+		'indexes' => array(
+			'uid' => array("uid"),
+			'transaction_id' => array("transaction_id"),
+		)
+	);
+    $schema['ui_pm_expire'] = array(
+		'description' => t('Urban Interns Private Message expire Information.'),
+		'fields' => array(
+			'eid' => array(
+				'type' => 'serial',
+				'unsigned' => TRUE,
+				'not null' => TRUE,
+				'description' => t('The expire id')
+			),
+			'tid' => array(
+				'type' => 'int',
+				'unsigned' => TRUE,
+				'not null' => TRUE,
+				'default' => 0,
+				'description' => t('The Transaction id')
+			),
+			'expire_date' => array(
+				'description' => t('the date of payment'),
+				'type' => 'datetime',
+				'not null' => false,
+			),
+			'cron' => array(
+				'type' => 'int',
+				'unsigned' => TRUE,
+				'size' => "tiny",
+				'not null' => TRUE,
+				'default' => 0,
+			),
+			'is_cancel' => array(
+				'type' => 'int',
+				'size' => 'tiny',
+				'unsigned' => TRUE,
+				'not null' => TRUE,
+				'default' => 0,
+			),
+		),
+		'primary key' => array(
+			'eid',
+		),
+		'indexes' => array(
+			'tid' => array("tid"),
+			'expire_date' => array("expire_date"),
+		)
+	);
+	return $schema;
+        
+}

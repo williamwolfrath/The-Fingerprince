@@ -1,0 +1,147 @@
+body {
+	background: #999;
+	font-family: Arial;
+}
+
+body.marketing-body {
+	background: white url(marketing-body-bg-1.jpg) 0px 30px no-repeat;
+	font-family: Verdana;
+}
+
+#main-front {
+	font-style: italic;
+	font-weight: 500;
+	font-size: 15px;
+	color: #999;
+	margin: 0px auto;
+	background: url('website-mockup-7-10-09_Page_1_800x618.jpg') no-repeat;
+	width: 800px;
+	height: 618px;
+}
+
+#content-inner {
+	padding: 30px;
+}
+
+#front-text-small {
+	position: relative;
+	top: 40px;
+}
+
+.dark-bold {
+	color: #333;
+	font-weight: bold;
+}
+
+
+
+#footer {
+	width: 800px;
+	margin: 0px auto;
+}
+
+
+/* LAYOUT */
+
+/* the user info block */
+#block-block-1 {
+	margin-top: 270px;
+	padding-left: 8px;
+	font-size: 12px;
+}
+
+/* login block */
+#block-user-0 {
+	position: relative;
+	width: 120px;
+	top: -40px;
+}
+
+/* MARKETING */
+#marketing-email-header {
+	font-family: Arial;
+}
+
+#marketing-email-header h1 {
+	margin-bottom: 0;
+}
+
+#marketing-email-header p {
+	margin-top: 0;
+	font-style: italic;
+}
+
+#marketing-email-content {
+	/*background: transparent url('marketing-bg-5.png') no-repeat;*/
+	margin-top: 40px;
+}
+
+#marketing-email-create>#content>#content-inner {
+	padding-left: 230px;
+	/*width: 100%;*/
+}
+
+#marketing-email-create>#content>#content-inner {
+	/*padding: 40px;*/
+}
+
+#marketing-email-create #content-area {
+	border: 8px solid #777;
+	padding: 20px;
+	padding-top: 0;
+	margin-right: 10px;
+	margin-top: 20px;
+	background: #f5f5f5;
+}
+
+#marketing-email-create .status {
+	border: 1px solid white;
+	background: #017B54;
+	color: white;
+	padding: 4px;
+	margin-right: 10px;
+}
+
+
+/* hide the login block links on the marketing page */
+#marketing-email-create #block-user-0 .item-list {
+	visibility: hidden;
+}
+
+#marketing-emailform label {
+	/*color: #943701;*/
+	color: #014073;
+	font-size: 14px;
+}
+
+#marketing-emailform .description {
+	font-style: italic;
+	font-size: .7em;
+}
+
+#marketing-emailform #edit-submit {
+	border: 8px solid #777;
+	background: #014073;
+	color: white;
+}
+
+#marketing-emailform #edit-submit:hover {
+	cursor: pointer;
+}
+
+#marketing-login {
+	/*width: 800px;
+	margin-left: 220px;
+	margin-top: 40px;*/
+}
+
+.fp-big-bold {
+	font-size: 20px;
+	font-weight: 400;
+	color: #014073;
+}
+
+.marketing-red {
+	color: red;
+}
+/* END MARKETING */

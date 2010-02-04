@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wc-entries
+   xmlns="svn:">
+<entry
+   committed-rev="69"
+   name=""
+   committed-date="2009-07-13T22:23:02.225110Z"
+   url="file:///home/gemiinii/webapps/wilwolf_svn/drupal/6/fingerprince/trunk/themes/fingerprince-1"
+   last-author="gemiinii"
+   kind="dir"
+   uuid="4c546e27-c469-0410-8e0c-86cc131382bf"
+   repos="file:///home/gemiinii/webapps/wilwolf_svn"
+   revision="69"/>
+<entry
+   committed-rev="70"
+   name="website-mockup-7-10-09_Page_1_800x618.jpg"
+   text-time="2009-07-13T22:23:30.000000Z"
+   committed-date="2009-07-13T22:23:53.471074Z"
+   checksum="56eb20a16627f88b5f2fb3b261c0b8e7"
+   last-author="gemiinii"
+   kind="file"
+   prop-time="2009-07-13T22:23:41.000000Z"
+   revision="70"/>
+<entry
+   committed-rev="86"
+   name="page-marketing.tpl.php"
+   text-time="2009-07-21T16:35:19.000000Z"
+   committed-date="2009-07-21T17:00:05.707729Z"
+   checksum="57171cf92461883d07c76393da9a5ea2"
+   last-author="gemiinii"
+   kind="file"
+   revision="86"/>
+<entry
+   committed-rev="75"
+   name="marketing-body-bg-1.jpg"
+   text-time="2009-07-14T23:55:52.000000Z"
+   committed-date="2009-07-15T01:07:06.609182Z"
+   checksum="81395c8cac5853166b4ff06b26077df2"
+   last-author="gemiinii"
+   kind="file"
+   prop-time="2009-07-15T01:06:55.000000Z"
+   revision="75"/>
+<entry
+   committed-rev="77"
+   name="page.tpl.php"
+   text-time="2009-07-14T18:04:46.000000Z"
+   committed-date="2009-07-15T01:08:06.496532Z"
+   checksum="bb9caa7a398e7ebe0d6093161fb5ccdf"
+   last-author="gemiinii"
+   kind="file"
+   revision="77"/>
+<entry
+   committed-rev="70"
+   name="template.php"
+   text-time="2009-07-13T22:23:30.000000Z"
+   committed-date="2009-07-13T22:23:53.471074Z"
+   checksum="dc5a986307dce29cdc1b9e1e9202a0fa"
+   last-author="gemiinii"
+   kind="file"
+   revision="70"/>
+<entry
+   committed-rev="89"
+   name="fingerprince.css"
+   text-time="2009-07-21T21:33:23.000000Z"
+   committed-date="2009-07-21T21:34:12.851288Z"
+   checksum="bf4e516c41c62a5ad23d9769fe403a97"
+   last-author="gemiinii"
+   kind="file"
+   revision="89"/>
+<entry
+   committed-rev="88"
+   name="fingerprince-1.info"
+   text-time="2009-09-03T22:44:34.000000Z"
+   committed-date="2009-07-21T17:00:31.305359Z"
+   checksum="9d192ffe78c24157ec11a3c4741f7fe2"
+   last-author="gemiinii"
+   kind="file"
+   revision="108"/>
+<entry
+   committed-rev="85"
+   name="layout.css"
+   text-time="2009-07-21T01:05:08.000000Z"
+   committed-date="2009-07-21T16:59:30.480248Z"
+   checksum="3375ec5248e02319c82b8b64040039e7"
+   last-author="gemiinii"
+   kind="file"
+   revision="85"/>
+<entry
+   committed-rev="70"
+   name="drupal-theme-screenshot.png"
+   text-time="2009-07-13T22:23:30.000000Z"
+   committed-date="2009-07-13T22:23:53.471074Z"
+   checksum="5a638f784b69333978e8887327ab6a34"
+   last-author="gemiinii"
+   kind="file"
+   prop-time="2009-07-13T22:23:41.000000Z"
+   revision="70"/>
+<entry
+   committed-rev="70"
+   name="fp_letterhead_v2_640.jpg"
+   text-time="2009-07-13T22:23:30.000000Z"
+   committed-date="2009-07-13T22:23:53.471074Z"
+   checksum="031bcb236efb47f69d0a15489daf9e4d"
+   last-author="gemiinii"
+   kind="file"
+   prop-time="2009-07-13T22:23:41.000000Z"
+   revision="70"/>
+<entry
+   committed-rev="70"
+   name="page-front.tpl.php"
+   text-time="2009-07-13T22:23:30.000000Z"
+   committed-date="2009-07-13T22:23:53.471074Z"
+   checksum="d7de5fedb03715c8660092af9f5509e5"
+   last-author="gemiinii"
+   kind="file"
+   revision="70"/>
+<entry
+   committed-rev="109"
+   name="fp_orders.js"
+   text-time="2009-08-27T20:04:07.000000Z"
+   committed-date="2009-09-03T23:32:30.372333Z"
+   checksum="81d8dbe2c253e79f1a8feeb8185b6c27"
+   last-author="gemiinii"
+   kind="file"
+   revision="109"/>
+</wc-entries>

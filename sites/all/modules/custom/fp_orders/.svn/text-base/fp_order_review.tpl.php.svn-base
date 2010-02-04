@@ -1,0 +1,14 @@
+<?php
+
+?>
+
+<div id="fp-order-review-page">
+    This is the order review page.
+<div id="fp-order-review-links">
+<?php
+// the only good way to insert the fp links block into the node div
+$block = module_invoke('block', 'block', 'view', 2);
+//print $block['content'];
+?>
+</div>
+</div>

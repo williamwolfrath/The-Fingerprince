@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wc-entries
+   xmlns="svn:">
+<entry
+   committed-rev="107"
+   name=""
+   committed-date="2009-08-15T19:16:43.485457Z"
+   url="file:///home/gemiinii/webapps/wilwolf_svn/drupal/6/fingerprince/trunk/modules/fp_orders"
+   last-author="gemiinii"
+   kind="dir"
+   uuid="4c546e27-c469-0410-8e0c-86cc131382bf"
+   repos="file:///home/gemiinii/webapps/wilwolf_svn"
+   revision="107"/>
+<entry
+   committed-rev="108"
+   name="fp_paypal.php"
+   text-time="2009-08-15T19:17:28.000000Z"
+   committed-date="2009-08-15T19:17:44.763485Z"
+   checksum="3be3a4f93587283c9ac7f2b3dc490434"
+   last-author="gemiinii"
+   kind="file"
+   revision="108"/>
+<entry
+   committed-rev="108"
+   name="fp_order_quantity_form.tpl.php"
+   text-time="2009-08-15T19:17:28.000000Z"
+   committed-date="2009-08-15T19:17:44.763485Z"
+   checksum="bd1dd144da04c1b527899b530de38f29"
+   last-author="gemiinii"
+   kind="file"
+   revision="108"/>
+<entry
+   committed-rev="108"
+   name="fp_order_review.tpl.php"
+   text-time="2009-08-15T19:17:28.000000Z"
+   committed-date="2009-08-15T19:17:44.763485Z"
+   checksum="62bbf71ec4112658a7325524e0c134bd"
+   last-author="gemiinii"
+   kind="file"
+   revision="108"/>
+<entry
+   committed-rev="108"
+   name="fp_order_form.tpl.php"
+   text-time="2009-08-15T19:17:28.000000Z"
+   committed-date="2009-08-15T19:17:44.763485Z"
+   checksum="530000e00a6df9f9720a695560b3c811"
+   last-author="gemiinii"
+   kind="file"
+   revision="108"/>
+<entry
+   committed-rev="108"
+   name="fp_orders.module"
+   text-time="2009-08-15T19:17:28.000000Z"
+   committed-date="2009-08-15T19:17:44.763485Z"
+   checksum="f55edb190e92a81407efef0d32baaf59"
+   last-author="gemiinii"
+   kind="file"
+   revision="108"/>
+<entry
+   committed-rev="108"
+   name="fp_orders.install"
+   text-time="2009-08-15T19:17:28.000000Z"
+   committed-date="2009-08-15T19:17:44.763485Z"
+   checksum="f911572ac922c046128f3d5da61ce071"
+   last-author="gemiinii"
+   kind="file"
+   revision="108"/>
+<entry
+   committed-rev="108"
+   name="EmailAddressValidator.php"
+   text-time="2009-08-15T19:17:28.000000Z"
+   committed-date="2009-08-15T19:17:44.763485Z"
+   checksum="217ddfde1e33ac0892a0b9705d9f9bb8"
+   last-author="gemiinii"
+   kind="file"
+   revision="108"/>
+<entry
+   committed-rev="108"
+   name="svn-commit.tmp"
+   text-time="2009-08-15T19:17:28.000000Z"
+   committed-date="2009-08-15T19:17:44.763485Z"
+   checksum="985f69ea40f452021e81bce11915cf27"
+   last-author="gemiinii"
+   kind="file"
+   revision="108"/>
+<entry
+   committed-rev="108"
+   name="fp_orders.info"
+   text-time="2009-08-15T19:17:28.000000Z"
+   committed-date="2009-08-15T19:17:44.763485Z"
+   checksum="5c92b706232b0011e04306ee87a3c870"
+   last-author="gemiinii"
+   kind="file"
+   revision="108"/>
+</wc-entries>

@@ -1,0 +1,217 @@
+<?php
+
+// $Id;
+
+/**
+ * @file
+ * Dumps watchdog data to CSV files
+ */
+
+
+/* ****************************************** */
+/* Drupal Hooks                               */
+/* ****************************************** */
+
+
+/**
+ * Implementation of hook_menu().
+ * @return array()
+ */
+function dblog_csv_menu() {
+  $items['admin/settings/logging/dblog_csv'] = array(
+    'title' => 'Logs to CSV',
+    'description' => 'Settings for storing database logs to csv files',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('dblog_csv_admin_settings'),
+    'access arguments' => array('administer site configuration'),
+  );
+  return $items;
+}
+
+
+/**
+ * Implementation of hook_cron().
+ * @return unknown_type
+ */
+function dblog_csv_cron() {
+  // This is a nasty way to stop dblog from being able to delete any rows. Note
+  // that dblog_csv has a lower weight than dblog so it will be called first.
+  // Get the total number of rows
+  $max = db_result(db_query('SELECT MAX(wid) FROM {watchdog}'));
+  // Set the dblog row limit to greater than the number of rows so it can not
+  // delete anything from the table
+  variable_set('dblog_row_limit', $max + 1000);
+
+  // Now run our functions
+ 	dblog_csv_rotate();
+	dblog_csv_run();
+}
+
+
+/* ****************************************** */
+/* Form Functions                             */
+/* ****************************************** */
+
+
+/**
+ * Alter the the dblog page to alert the user that it will not do anything
+ * @param <type> $form
+ * @param <type> $form_state
+ */
+function dblog_csv_form_dblog_admin_settings_alter(&$form, $form_state) {
+  drupal_set_message(t('Please note: These settings are being overriden by DBLog to CSV.
+    While DBLog to CSV is enabled logs will only be deleted according to !link.', array('!link' => l('DBLog to CSV\'s settings', 'admin/settings/logging/dblog_csv'))));
+}
+
+
+/**
+ * Build the administration form.
+ * @return array
+ */
+function dblog_csv_admin_settings() {
+  $form['dblog_csv_log_severity_level'] = array(
+    '#title' => t('Warning level'),
+    '#type' => 'select',
+    '#options' => watchdog_severity_levels(),
+    '#default_value' => variable_get('dblog_csv_log_severity_level', WATCHDOG_WARNING),
+    '#description' => t('Select the level of entries you wish to automatically dump to the CSV files.
+      This will leave all enties more severe than this level in the database until the purge settings is reached.
+      Entries below this level are considered trivial.'),
+  );
+
+  $options = array(
+    '1' => t('Every cron run'),
+    '1800' => t('Every thirty minutes'),
+    '3600' => t('Every hour'),
+    '21600' => t('Every 6 hours'),
+    '43200' => t('Every 12 hours'),
+    '86400' => t('Every day'),
+    '604800' => t('Every week'),
+  );
+
+  $form['dblog_csv_file_trivial_write_time'] = array(
+    '#title' => t('How often to write trivial entries'),
+    '#type' => 'select',
+    '#options' => $options,
+    '#default_value' => variable_get('dblog_csv_file_trivial_write_time', 86400),
+    '#description' => t('Set the duration between dumps to the CSV files of trivial errors- any error level below the Warning level set above')
+  );
+
+  $form['dblog_csv_file_non_trivial_write_time'] = array(
+    '#title' => t('How often to write non-trivial entries'),
+    '#type' => 'select',
+    '#options' => $options,
+    '#default_value' => variable_get('dblog_csv_file_non_trivial_write_time', 86400),
+    '#description' => t('Set the duration between dumps to the CSV files of severe errors- any error level above the Warning level set above')
+  );
+
+  $form['dblog_csv_file_size'] = array(
+    '#title' => t('Max log size'),
+    '#type' => 'textfield',
+    '#default_value' => variable_get('dblog_csv_file_size', 10),
+    '#max_size' => 3,
+    '#size' => 3,
+    '#description' => t('Set the maximum size your log file will grow to before it is rotated. Size is in MB')
+  );
+
+  $form['dblog_csv_log_directory_path'] = array(
+    '#title' => t('Log location'),
+    '#type' => 'textfield',
+    '#default_value' => variable_get('dblog_csv_log_directory_path', file_directory_path() .'/dblog_csv_logs'),
+    '#description' => t('Select the level of entries you wish to automatically dump to the CSV files.
+      This will leave all enties more severe than this level in the database until the purge settings is reached'),
+  );
+
+  return system_settings_form($form);
+}
+
+
+/* ****************************************** */
+/* Custom Functions                           */
+/* ****************************************** */
+
+
+/**
+ * Does the log rotation. We check for this every
+ * cron run so that we do not generate log files which
+ * are massive.
+ */
+function dblog_csv_rotate() {
+  // Make sure we have a .htaccess file to prevent prying eyes
+  dblog_csv_htaccess();
+
+	// get the current log file if we do not have one
+	if (! $log_file = variable_get('dblog_csv_file_current_log', false)) {
+    // create the path to the logs
+    $log_path = variable_get('dblog_csv_log_directory_path',  file_directory_path() .'/dblog_csv_logs');
+		variable_set('dblog_csv_file_current_log', $log_path .'/log.csv');
+		// create the directory as well
+		file_check_directory($log_path, FILE_CREATE_DIRECTORY);
+	}
+
+	if (file_exists($log_file)) {
+		// check the size of the log file in bytes (default is less than 10mb
+		if (filesize($log_file) > (variable_get('dblog_csv_file_size', 10) * 1024 * 1024) ) {
+			// file_copy() alters the incoming string by reference so we
+			// send in a different one
+			$new_file_path = $log_file;
+		  // we need to rotate the logfile
+		  // @TODO this should probably be a variable to set
+	    file_copy($new_file_path, file_directory_path() .'/dblog_csv_logs/logs');
+	    watchdog('Dblog CSV', 'Rotated logs ', null, WATCHDOG_INFO);
+	  }
+	}
+}
+
+
+/**
+ * Runs the log processing and dumps to CSV file
+ * @return unknown_type
+ */
+function dblog_csv_run() {
+	// get our log severity level
+	$level = variable_get('dblog_csv_log_severity_level',  WATCHDOG_WARNING);
+	// Get trival expiration time, default is 30 minutes
+	$trival_expired = time() - variable_get('dblog_csv_file_trivial_write_time', 1800);
+	 // Get non-trivial expiration time, default is 7 days
+  $non_trivial_expired = time() - variable_get('dblog_csv_file_non_trivial_write_time',  604800);
+
+	// select the entries from the log
+	$results = db_query('SELECT * FROM {watchdog} WHERE (severity <= %d AND timestamp < %d) OR (timestamp < %d)', $level, $trival_expired, $non_trivial_expired);
+
+  // create the path to the logs if we do not have it
+  $log_path = variable_get('dblog_csv_log_directory_path' , file_directory_path() .'/dblog_csv_logs');
+
+  // get the current log file
+  $log_file = $log_path .'/log.csv';
+
+	// Open the log file
+	$file = fopen($log_file, 'a');
+
+  while($result = db_fetch_array($results)) {
+    fputcsv($file, $result);
+  }
+
+  // close the file
+  fclose($file);
+
+  // delete from the log
+  db_query('DELETE FROM {watchdog} WHERE (severity >= %d AND timestamp < %d) OR (timestamp < %d)', $level, $trival_expired, $non_trivial_expired);
+
+  // log it
+  watchdog('WW Log', 'Dumped latest watchdog entries to %logfile', array('%logfile' => $logfile), WATCHDOG_INFO);
+}
+
+
+/**
+ * We need to write a .htaccess file to the dblog_csv_logs directory
+ */
+function dblog_csv_htaccess() {
+  $filepath = variable_get('dblog_csv_log_directory_path' , file_directory_path() .'/dblog_csv_logs'). '/.htaccess';
+  if (! file_exists($filepath)) {
+    $data = "Deny From All\n";
+    $handle = fopen($filepath, 'a+');
+    fwrite($handle, $data);
+    fclose($handle);
+  }
+}

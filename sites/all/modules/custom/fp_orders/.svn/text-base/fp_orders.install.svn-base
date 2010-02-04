@@ -1,0 +1,221 @@
+<?php
+
+
+function fp_orders_install() {
+    drupal_install_schema('fp_orders');
+    variable_set('fp_e_book_price', '5.00');
+    variable_set('fp_audio_e_book_price', '10.00');
+    variable_set('fp_paypal_env' , "sandbox");
+    variable_set('fp_paypal_sandbox_username', 'william.wolfrath_api1.gmail.com');
+    variable_set('fp_paypal_sandbox_signature', 'AFcWxV21C7fd0v3bYYYRCpSSRl31A683bamEnfPzKMS-BRvuRpSdofWV');
+    variable_set('fp_paypal_sandbox_password', '42WMAQ4KQG79PW67');
+    variable_set('fp_paypal_live_username', '');
+    variable_set('fp_paypal_live_signature', '');
+    variable_set('fp_paypal_live_password', '');
+    drupal_set_message(t('All fp_order tables have been installed.'));
+}
+
+function fp_orders_uninstall() {
+    drupal_uninstall_schema('fp_orders');
+    variable_del('fp_payment_job_price');
+    variable_del('fp_payment_premium_price');
+    variable_del('fp_paypal_env');
+    variable_del('fp_paypal_sandbox_username');
+    variable_del('fp_paypal_sandbox_signature');
+    variable_del('fp_paypal_sandbox_password');
+    drupal_set_message(t('All fp_order tables have been removed.'));
+}
+
+
+function fp_orders_schema() {
+
+    $schema['fp_order'] = array (
+       'description' => t('FingerPrince order information.'),
+       'fields' => array(
+            'id' => array('type' => 'serial',
+		    'unsigned' => TRUE,
+                    'not null' => TRUE,
+                    'description' => t('The order id.'),
+	    ),
+            'num_e_books' => array(
+		    'type' => 'int',
+                    'unsigned' => TRUE,
+		    'not null' => TRUE,
+		    'default' => 0,
+		    'description' => t('The number of e books ordered.')
+	    ),
+            'num_audio_e_books' => array(
+		    'type' => 'int',
+                    'unsigned' => TRUE,
+		    'not null' => TRUE,
+		    'default' => 0,
+		    'description' => t('The number of audio e books ordered.')
+	    ),
+       ),
+       'primary key' => array(
+	    'id',
+	),
+    );
+
+    $schema['fp_order_e_book_emails'] = array (
+       'description' => t('FingerPrince order emails.'),
+       'fields' => array(
+            'oid' => array('type' => 'int',
+		    'unsigned' => TRUE,
+                    'not null' => TRUE,
+                    'description' => t('The {fp_order}.id.'),
+	    ),
+            'email' => array(
+		    'type' => 'varchar',
+		    'not null' => TRUE,
+                    'length' => '100',
+		    'default' => '',
+		    'description' => t('An e book email for an order.')
+	    ),
+       )
+    );
+
+    $schema['fp_order_audio_e_book_emails'] = array (
+       'description' => t('FingerPrince order emails.'),
+       'fields' => array(
+            'oid' => array('type' => 'int',
+		    'unsigned' => TRUE,
+                    'not null' => TRUE,
+                    'description' => t('The {fp_order}.id.'),
+	    ),
+            'email' => array(
+		    'type' => 'varchar',
+		    'not null' => TRUE,
+                    'length' => '100',
+		    'default' => '',
+		    'description' => t('An audio e book email for an order.')
+	    ),
+       )
+    );
+
+    $schema['fp_transaction'] = array(
+		'description' => t('The FingerPrince Transaction Information.'),
+		'fields' => array(
+			'tid' => array('type' => 'serial',
+				'unsigned' => TRUE,
+				'not null' => TRUE,
+				'description' => t('The id of the transaction.'),
+			),
+			'oid' => array(
+				'type' => 'int',
+				'unsigned' => TRUE,
+				'not null' => TRUE,
+				'default' => 0,
+				'description' => t('The {fp_order}.id')
+			),
+			'transaction_id' => array(
+				'type' => 'varchar',
+				'not null' => true,
+                                'length' => '40',
+				'default' => '',
+				'description' => t('The transaction which returns from paypal')
+			),
+			'first_name' => array(
+				'type' => 'varchar',
+				'not null' => true,
+                                'length' => '40',
+				'default' => '',
+				'description' => t('The first name of payer')
+			),
+			'last_name' => array(
+				'type' => 'varchar',
+				'not null' => true,
+                                'length' => '40',
+				'default' => '',
+				'description' => t('The last name of payer')
+			),
+			'amount' => array(
+				'type' => 'numeric', 
+				'size' => 'normal', 
+				'not null' => TRUE, 
+				'default' => 0, 
+				'precision' => 10, 
+				'scale' => 2,
+				'description' => t('The amount of transaction')
+			),
+			'note' => array(
+				'description' => t('The text of the transation.'),
+				'type' => 'text',
+				'not null' => true,
+				'size' => 'normal'
+			),
+			'created' => array(
+				'description' => t('the date of payment'),
+				'type' => 'datetime',
+				'not null' => false,
+			),
+		),
+		'primary key' => array(
+			'tid'
+		),
+		'indexes' => array(
+			'transaction_id' => array("transaction_id"),
+		)
+	);
+
+    $schema['fp_address'] = array(
+		'description' => t('FingerPrince orders address info'),
+		'fields' => array(
+			'tid' => array('type' => 'int',
+				'unsigned' => TRUE,
+				'not null' => TRUE,
+				'default' => 0,
+				'description' => t('The {fp_transaction}.tid'),
+			),
+			'address1' => array(
+				'type' => 'varchar',
+				'not null' => true,
+                                'length' => '100',
+				'default' => '',
+				'description' => t('Address1')
+			),
+			'address2' => array(
+				'type' => 'varchar',
+				'not null' => true,
+                                'length' => '100',
+				'default' => '',
+				'description' => t('Address2')
+			),
+			'zip' => array(
+				'type' => 'varchar',
+				'not null' => true,
+                                'length' => '20',
+				'default' => '',
+				'description' => t('Zip Code')
+			),
+			'city' => array(
+				'type' => 'varchar',
+				'not null' => true,
+                                'length' => '40',
+				'default' => '',
+				'description' => t('City')
+			),
+			'state' => array(
+				'type' => 'varchar',
+				'not null' => true,
+                                'length' => '40',
+				'default' => '',
+				'description' => t('State')
+			),
+			'country_code' => array(
+				'type' => 'varchar',
+				'not null' => true,
+                                'length' => '2',
+				'default' => '',
+				'description' => t('Country')
+			),
+			
+		),
+		'primary key' => array(
+			'tid'
+		),
+	);
+    return $schema;
+}
+
+?>
